@@ -36,11 +36,6 @@ body {
   padding: 0 20px;
 }
 
-.status-text {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
 .system-title {
   font-size: 24px;
   font-weight: bold;
@@ -192,7 +187,7 @@ body {
 }
 
 .nav-btn:hover {
-  background-color: rgba(102, 252, 241, 0.1);
+  background-color: rgba(156, 42, 255, 0.651);
 }
 
 /* Notification Area */
