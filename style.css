@@ -50,11 +50,11 @@ body {
 }
 
 .notification-btn {
-  background: rgba(255, 255, 255, 0.1);
+  background: #B740FA;
   border: none;
   color: white;
-  padding: 8px 12px;
-  border-radius: 50px;
+  padding: 10px 15px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@ body {
 }
 
 .notification-count {
-  background: red;
+  background: #ffffff;
   color: white;
   border-radius: 50%;
   padding: 2px 6px;
@@ -71,18 +71,31 @@ body {
 }
 
 .logout-btn {
-  background: rgba(255, 255, 255, 0.1);
+ background: #B740FA;
   border: none;
   color: white;
-  padding: 8px 20px;
-  border-radius: 50px;
+  padding: 10px 15px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
 }
 
 .logout-btn:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.logout-icon, .notif-icon {
+  font-size: 1.2rem;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
 }
 
 /* Split container for login/signup/role selection pages */
@@ -197,19 +210,19 @@ body {
 }
 
 #notif-icon {
-  background-color: #1f2833;
-  color: #66fcf1;
+  background-color: #B740FA;
+  color: #B740FA;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 10px;
   font-size: 1.1rem;
-  border-radius: 50px;
+  border-radius: 10px;
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
 }
 
 #notif-icon:hover {
-  background-color: rgba(31, 40, 51, 0.8);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #notif-count {
@@ -327,7 +340,7 @@ textarea {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: #ffffff;
+  color: #000000;
   padding: 5px;
 }
 
@@ -455,7 +468,7 @@ textarea {
   padding: 10px 20px;
   background: transparent;
   border: none;
-  color: #66fcf1;
+  color: #ffffff;
   cursor: pointer;
   border-bottom: 3px solid transparent;
   transition: all 0.3s ease;
@@ -464,13 +477,13 @@ textarea {
 }
 
 .tab-btn.active {
-  border-bottom: 3px solid #00c6ff;
+  border-bottom: 3px solid #d9cb00;
   font-weight: bold;
-  color: #00c6ff;
+  color: #fff000;
 }
 
 .tab-btn:hover:not(.active) {
-  color: #000000;
+  color: #fff000;
 }
 
 .tab-content {
