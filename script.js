@@ -1,2026 +1,1325 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const loginPage = document.getElementById('loginPage');
-    const signupPage = document.getElementById('signupPage');
-    const dashboardPage = document.getElementById('dashboardPage');
-    const loginForm = document.getElementById('loginForm');
-    const staffLoginForm = document.getElementById('staffLoginForm');
-    const adminLoginForm = document.getElementById('adminLoginForm');
-    const signupForm = document.getElementById('signupForm');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const showLogin = document.getElementById('showLogin');
-    const togglePasswordLogin = document.getElementById('togglePasswordLogin');
-    const toggleStaffPassword = document.getElementById('toggleStaffPassword');
-    const toggleAdminPassword = document.getElementById('toggleAdminPassword');
-    const togglePasswordSignup = document.getElementById('togglePasswordSignup');
-    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-    const capsWarningLogin = document.getElementById('capsWarningLogin');
-    const capsWarningStaff = document.getElementById('capsWarningStaff');
-    const capsWarningAdmin = document.getElementById('capsWarningAdmin');
-    const capsWarningSignup = document.getElementById('capsWarningSignup');
-    const passwordLogin = document.getElementById('password');
-    const staffPassword = document.getElementById('staffPassword');
-    const adminPassword = document.getElementById('adminPassword');
-    const passwordSignup = document.getElementById('signupPassword');
-    const confirmPassword = document.getElementById('signupConfirmPassword');
-    const complaintForm = document.getElementById('complaintForm');
-    const documentRequestForm = document.getElementById('documentRequestForm');
-    const otherServicesForm = document.getElementById('otherServicesForm');
-    const statusFilter = document.getElementById('statusFilter');
-    const documentStatusFilter = document.getElementById('documentStatusFilter');
-    const serviceTypeFilter = document.getElementById('serviceTypeFilter');
-    const manageStatusFilter = document.getElementById('manageStatusFilter');
-    const searchComplaints = document.getElementById('searchComplaints');
-    const generateReportBtn = document.getElementById('generateReportBtn');
-    const publicTypeFilter = document.getElementById('publicTypeFilter');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const complaintsList = document.getElementById('complaintsList');
-    const documentsList = document.getElementById('documentsList');
-    const servicesList = document.getElementById('servicesList');
-    const manageComplaintsList = document.getElementById('manageComplaintsList');
-    const manageDocumentsList = document.getElementById('manageDocumentsList');
-    const manageServicesList = document.getElementById('manageServicesList');
-    const resolvedComplaintsGrid = document.getElementById('resolvedComplaintsGrid');
-    const userRoleDisplay = document.getElementById('userRoleDisplay');
-    const modal = document.getElementById('complaintDetailsModal');
-    const modalTitle = document.getElementById('modalComplaintTitle');
-    const modalBody = document.getElementById('modalComplaintBody');
-    const modalActions = document.getElementById('modalActions');
-    const accountTypeSelector = document.getElementById('accountTypeSelector');
-    const welcomeMessage = document.getElementById('welcomeMessage');
-    const residentBtn = document.getElementById('residentBtn');
-    const staffBtn = document.getElementById('staffBtn');
-    const adminBtn = document.getElementById('adminBtn');
-    const residentLoginForm = document.getElementById('residentLoginForm');
-    const backToSelection = document.getElementById('backToSelection');
-    const serviceSelection = document.getElementById('serviceSelection');
-    const complaintsBtn = document.getElementById('complaintsBtn');
-    const documentsBtn = document.getElementById('documentsBtn');
-    const othersBtn = document.getElementById('othersBtn');
-    const complaintsSection = document.getElementById('complaintsSection');
-    const documentsSection = document.getElementById('documentsSection');
-    const othersSection = document.getElementById('othersSection');
-    const staffAdminServiceSelection = document.getElementById('staffAdminServiceSelection');
-    const manageComplaintsBtn = document.getElementById('manageComplaintsBtn');
-    const manageDocumentsBtn = document.getElementById('manageDocumentsBtn');
-    const manageOthersBtn = document.getElementById('manageOthersBtn');
-    const manageComplaintsSection = document.getElementById('manageComplaintsSection');
-    const manageDocumentsSection = document.getElementById('manageDocumentsSection');
-    const manageOthersSection = document.getElementById('manageOthersSection');
-    const backToServicesFromManageComplaints = document.getElementById('backToServicesFromManageComplaints');
-    const backToServicesFromManageDocuments = document.getElementById('backToServicesFromManageDocuments');
-    const backToServicesFromManageOthers = document.getElementById('backToServicesFromManageOthers');
-    const documentManageStatusFilter = document.getElementById('documentManageStatusFilter');
-    const searchDocuments = document.getElementById('searchDocuments');
-    const serviceManageTypeFilter = document.getElementById('serviceManageTypeFilter');
-    const searchServices = document.getElementById('searchServices');
-    const staffDashboard = document.getElementById('staffDashboard');
-    const adminDashboard = document.getElementById('adminDashboard');
-    const publicViewSection = document.getElementById('publicViewSection');
-    const serviceType = document.getElementById('serviceType');
-    const donationAmountGroup = document.getElementById('donationAmountGroup');
-    const complaintFormSection = document.getElementById('complaintFormSection');
-    const backToServicesFromComplaints = document.getElementById('backToServicesFromComplaints');
-    const backToServicesFromDocuments = document.getElementById('backToServicesFromDocuments');
-    const backToServicesFromOthers = document.getElementById('backToServicesFromOthers');
-    const trackingDashboard = document.querySelector('.tracking-dashboard');
-    const adminStatusFilter = document.getElementById('adminStatusFilter');
-    const adminSearchComplaints = document.getElementById('adminSearchComplaints');
-    const adminGenerateReportBtn = document.getElementById('adminGenerateReportBtn');
-    const adminComplaintsList = document.getElementById('adminComplaintsList');
-    const adminVerifiedComplaintsSection = document.getElementById('adminVerifiedComplaintsSection');
-    const adminVerifiedStatusFilter = document.getElementById('adminVerifiedStatusFilter');
-    const adminVerifiedSearch = document.getElementById('adminVerifiedSearch');
-    const adminVerifiedComplaintsList = document.getElementById('adminVerifiedComplaintsList');
-    const backToServicesFromAdminComplaints = document.getElementById('backToServicesFromAdminComplaints');
-    const complaintsTitle = document.getElementById('complaintsTitle');
-    const documentsTitle = document.getElementById('documentsTitle');
-    const servicesTitle = document.getElementById('servicesTitle');
-    const manageComplaintsHeader = document.getElementById('manageComplaintsHeader');
-    const manageDocumentsHeader = document.getElementById('manageDocumentsHeader');
-    const manageServicesHeader = document.getElementById('manageServicesHeader');
+document.addEventListener("DOMContentLoaded", function () {
+  // DOM Elements
+  const containers = document.querySelectorAll(".container");
+  const showSignupLink = document.getElementById("show-signup");
+  const showLoginLink = document.getElementById("show-login");
+  const loginContainer = document.getElementById("login-container");
+  const signupContainer = document.getElementById("signup-container");
+  const roleSelectionContainer = document.getElementById("role-selection-container");
+  const residentContainer = document.getElementById("resident-container");
+  const staffContainer = document.getElementById("staff-container");
+  const adminContainer = document.getElementById("admin-container");
+  const staffDashboard = document.getElementById("staff-dashboard");
+  const adminDashboard = document.getElementById("admin-dashboard");
+  const requestFormContainer = document.getElementById("request-form-container");
+  const complaintFormContainer = document.getElementById("complaint-form-container");
+  const othersFormContainer = document.getElementById("other-form-container");
+  const trackingContainer = document.getElementById("tracking-container");
+  const trackingBtn = document.getElementById("tracking-btn");
+  const togglePasswordBtns = document.querySelectorAll(".toggle-password");
+  const notifIcon = document.getElementById("notif-icon");
+  const notifPanel = document.getElementById("notif-panel");
+  const splitScreenContainer = document.getElementById("split-screen-container");
+  const fullScreenContainer = document.getElementById("full-screen-container");
+  const statusBar = document.querySelector(".status-bar");
 
-    // Data storage
-    let userAccounts = JSON.parse(localStorage.getItem('userAccounts')) || [
-        { 
-            id: '1',
-            username: 'admin', 
-            password: 'admin123', 
-            name: 'Administrator', 
-            email: 'admin@barangay.gov',
-            role: 'admin'
-        },
-        { 
-            id: '2',
-            username: 'staff', 
-            password: 'staff123', 
-            name: 'Barangay Staff', 
-            email: 'staff@barangay.gov',
-            role: 'staff'
-        },
-        { 
-            id: '3',
-            username: 'resident', 
-            password: 'resident123', 
-            name: 'Resident User', 
-            email: 'resident@barangay.gov',
-            role: 'resident'
-        }
-    ];
+  // Other Services Elements - Check if elements exist before using them
+  const serviceType = document.getElementById("serviceType");
+  const serviceDetails = document.getElementById("serviceDetails");
+  const donationAmountGroup = document.getElementById("donationAmountGroup");
+  const donationAmount = document.getElementById("donationAmount");
+  const otherServicesForm = document.getElementById("otherServicesForm");
+  const backToServicesFromOthers = document.getElementById("backToServicesFromOthers");
+  const serviceTypeFilter = document.getElementById("serviceTypeFilter");
+  const servicesList = document.getElementById("servicesList");
 
-    let complaints = JSON.parse(localStorage.getItem('complaints')) || [
-        {
-            id: 1,
-            residentName: 'Juan Dela Cruz',
-            residentAge: '35',
-            residentAddress: '123 Main St, Purok 5',
-            residentEmail: 'juan@example.com',
-            residentContact: '09123456789',
-            residentUsername: 'resident',
-            residentId: '3',
-            type: 'Garbage Collection',
-            details: 'Garbage has not been collected for 3 days in our area',
-            location: 'Purok 5, near basketball court',
-            date: new Date().toISOString().split('T')[0],
-            status: 'Resolved',
-            photo: null,
-            assignedStaff: 'Staff 1',
-            resolutionNotes: 'Garbage was collected the following day',
-            verifiedBy: 'Staff 1',
-            verifiedAt: new Date().toISOString().split('T')[0],
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: true,
-            needsVerification: false
-        },
-        {
-            id: 2,
-            residentName: 'Maria Santos',
-            residentAge: '28',
-            residentAddress: '456 Oak St, Purok 3',
-            residentEmail: 'maria@example.com',
-            residentContact: '09234567890',
-            residentUsername: 'resident',
-            residentId: '3',
-            type: 'Road Repair',
-            details: 'Large pothole causing traffic and accidents',
-            location: 'Main road near barangay hall',
-            date: new Date().toISOString().split('T')[0],
-            status: 'In Progress',
-            photo: null,
-            assignedStaff: 'Staff 2',
-            resolutionNotes: '',
-            verifiedBy: 'Staff 1',
-            verifiedAt: new Date().toISOString().split('T')[0],
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: true,
-            needsVerification: false
-        },
-        {
-            id: 3,
-            residentName: 'Pedro Reyes',
-            residentAge: '42',
-            residentAddress: '789 Pine St, Purok 4',
-            residentEmail: 'pedro@example.com',
-            residentContact: '09345678901',
-            residentUsername: 'resident',
-            residentId: '3',
-            type: 'Streetlight Repair',
-            details: 'Streetlight not working for 1 week',
-            location: 'Corner of Purok 3 and Purok 4',
-            date: new Date().toISOString().split('T')[0],
-            status: 'Pending',
-            photo: null,
-            assignedStaff: '',
-            resolutionNotes: '',
-            verifiedBy: '',
-            verifiedAt: '',
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: false,
-            needsVerification: true
-        }
-    ];
+  // Data storage
+  let selectedRole = null;
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let currentUser = null;
+  let requests = JSON.parse(localStorage.getItem("requests")) || [];
+  let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+  let otherServices = JSON.parse(localStorage.getItem("otherServices")) || [];
 
-    let documents = JSON.parse(localStorage.getItem('documents')) || [
-        {
-            id: 1,
-            residentName: 'Juan Dela Cruz',
-            residentUsername: 'resident',
-            residentId: '3',
-            documentType: 'Barangay Clearance',
-            purpose: 'Employment requirement',
-            notes: 'Urgent - need by Friday',
-            dateRequested: new Date().toISOString().split('T')[0],
-            status: 'Completed',
-            processedBy: 'Staff 1',
-            dateProcessed: new Date().toISOString().split('T')[0],
-            verifiedBy: 'Admin 1',
-            verifiedAt: new Date().toISOString().split('T')[0],
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: true
-        },
-        {
-            id: 2,
-            residentName: 'Maria Santos',
-            residentUsername: 'resident',
-            residentId: '3',
-            documentType: 'Certificate of Residency',
-            purpose: 'School requirement',
-            notes: '',
-            dateRequested: new Date().toISOString().split('T')[0],
-            status: 'Ready for Pickup',
-            processedBy: 'Staff 2',
-            dateProcessed: new Date().toISOString().split('T')[0],
-            verifiedBy: 'Admin 1',
-            verifiedAt: new Date().toISOString().split('T')[0],
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: true
-        }
-    ];
+  // Utility function to hide all containers
+  function hideAllContainers() {
+    containers.forEach((container) => {
+      if (container) container.style.display = "none";
+    });
+  }
 
-    let otherServices = JSON.parse(localStorage.getItem('otherServices')) || [
-        {
-            id: 1,
-            residentName: 'Pedro Reyes',
-            residentUsername: 'resident',
-            residentId: '3',
-            serviceType: 'Suggestion',
-            details: 'Please install more streetlights in Purok 4',
-            donationAmount: null,
-            dateSubmitted: new Date().toISOString().split('T')[0],
-            status: 'Received',
-            verifiedBy: 'Admin 1',
-            verifiedAt: new Date().toISOString().split('T')[0],
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: true
-        },
-        {
-            id: 2,
-            residentName: 'Juan Dela Cruz',
-            residentUsername: 'resident',
-            residentId: '3',
-            serviceType: 'Donation',
-            details: 'Donation for community pantry',
-            donationAmount: 1000,
-            dateSubmitted: new Date().toISOString().split('T')[0],
-            status: 'Received',
-            verifiedBy: 'Admin 1',
-            verifiedAt: new Date().toISOString().split('T')[0],
-            createdBy: 'resident',
-            createdById: '3',
-            isVerified: true
-        }
-    ];
+  // Toggle between split-screen and full-screen views
+  function showSplitScreen() {
+    if (splitScreenContainer) splitScreenContainer.style.display = "block";
+    if (fullScreenContainer) fullScreenContainer.style.display = "none";
+    if (statusBar) statusBar.style.display = "none";
+  }
 
-    // Utility Functions
-    function getCurrentUser() {
-        const user = sessionStorage.getItem('currentUser');
-        return user ? JSON.parse(user) : null;
+  function showFullScreen() {
+    if (splitScreenContainer) splitScreenContainer.style.display = "none";
+    if (fullScreenContainer) fullScreenContainer.style.display = "block";
+    if (statusBar) statusBar.style.display = "block";
+  }
+
+  // Toggle password visibility
+  function togglePasswordVisibility(inputId, toggleBtn) {
+    const input = document.getElementById(inputId);
+    if (!input || !toggleBtn) return;
+    
+    if (input.type === "password") {
+      input.type = "text";
+      toggleBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+        </svg>
+      `;
+    } else {
+      input.type = "password";
+      toggleBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+          <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      `;
+    }
+  }
+
+  // Setup password toggle buttons
+  togglePasswordBtns.forEach(btn => {
+    if (!btn) return;
+    const inputId = btn.closest('.password-container')?.querySelector('input')?.id;
+    if (inputId) {
+      btn.addEventListener("click", function() {
+        togglePasswordVisibility(inputId, this);
+      });
+    }
+  });
+
+  // Initialize - show role selection first
+  hideAllContainers();
+  showSplitScreen();
+  if (roleSelectionContainer) roleSelectionContainer.style.display = "block";
+
+  // Role selection handler
+  document.querySelectorAll(".role-card").forEach((card) => {
+    if (!card) return;
+    card.addEventListener("click", function () {
+      selectedRole = this.getAttribute("data-role");
+      hideAllContainers();
+
+      if (selectedRole === "staff" || selectedRole === "admin") {
+        if (loginContainer) loginContainer.style.display = "block";
+        if (document.getElementById("email")) document.getElementById("email").value = "";
+        if (document.getElementById("password")) document.getElementById("password").value = "";
+      } else {
+        if (loginContainer) loginContainer.style.display = "block";
+        if (document.getElementById("email")) document.getElementById("email").value = "";
+        if (document.getElementById("password")) document.getElementById("password").value = "";
+      }
+    });
+  });
+
+  // Toggle between login and signup forms
+  showSignupLink?.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (loginContainer) loginContainer.style.display = "none";
+    if (signupContainer) signupContainer.style.display = "block";
+  });
+
+  showLoginLink?.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (signupContainer) signupContainer.style.display = "none";
+    if (loginContainer) loginContainer.style.display = "block";
+  });
+
+  // Signup form submission
+  document.getElementById("signup-form")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("signup-email")?.value.trim();
+    const firstName = document.getElementById("first-name")?.value.trim();
+    const lastName = document.getElementById("last-name")?.value.trim();
+    const userType = document.getElementById("user-type")?.value;
+    const password = document.getElementById("signup-password")?.value;
+    const confirmPassword = document.getElementById("confirm-password")?.value;
+
+    // Validation
+    if (!email || !firstName || !lastName || !userType || !password || !confirmPassword) {
+      alert("Please fill in all fields");
+      return;
     }
 
-    function resetAllForms() {
-        const forms = [
-            document.getElementById('loginForm'),
-            document.getElementById('staffLoginForm'),
-            document.getElementById('adminLoginForm'),
-            document.getElementById('signupForm'),
-            document.getElementById('complaintForm'),
-            document.getElementById('documentRequestForm'),
-            document.getElementById('otherServicesForm')
-        ];
-        
-        forms.forEach(form => {
-            if (form && typeof form.reset === 'function') {
-                form.reset();
-            }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    if (users.some((user) => user.email === email)) {
+      alert("User with this email already exists!");
+      return;
+    }
+
+    // Create new user
+    const newUser = {
+      email,
+      firstName,
+      lastName,
+      userType,
+      password,
+      dateCreated: new Date().toISOString(),
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Show role-specific instructions
+    if (userType === "staff") {
+      alert('Account created successfully! As staff, you will need to verify with "brgystff" after login.');
+    } else if (userType === "admin") {
+      alert('Account created successfully! As admin, you will need to verify with "admin" after login.');
+    } else {
+      alert("Account created successfully!");
+    }
+
+    // Clear form and show login
+    this.reset();
+    if (signupContainer) signupContainer.style.display = "none";
+    if (loginContainer) loginContainer.style.display = "block";
+  });
+
+  // Login form submission
+  document.getElementById("login-form")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email")?.value.trim();
+    const password = document.getElementById("password")?.value;
+
+    // Find user
+    const user = users.find((u) => u.email === email);
+
+    // Validate credentials - only check against stored password
+    if (!user || user.password !== password) {
+      alert("Invalid email or password!");
+      return;
+    }
+
+    currentUser = user;
+    localStorage.setItem("loggedInResident", user.email);
+    hideAllContainers();
+    showFullScreen();
+
+    // Redirect based on role
+    switch (user.userType) {
+      case "resident":
+        if (residentContainer) residentContainer.style.display = "block";
+        showResidentNotifications(user.email);
+        break;
+      case "staff":
+        if (staffContainer) staffContainer.style.display = "block";
+        break;
+      case "admin":
+        if (adminContainer) adminContainer.style.display = "block";
+        break;
+      default:
+        if (roleSelectionContainer) roleSelectionContainer.style.display = "block";
+    }
+  });
+
+  // Staff verification
+  document.getElementById("staff-auth-form")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const password = document.getElementById("staff-password")?.value;
+
+    // Verify current user is actually staff
+    if (!currentUser || currentUser.userType !== "staff") {
+      alert("Invalid user session!");
+      hideAllContainers();
+      showSplitScreen();
+      if (roleSelectionContainer) roleSelectionContainer.style.display = "block";
+      return;
+    }
+
+    if (password === "brgystff") {
+      hideAllContainers();
+      if (staffDashboard) staffDashboard.style.display = "block";
+      loadStaffDashboard();
+    } else {
+      alert("Invalid staff verification password!");
+    }
+  });
+
+  // Admin verification
+  document.getElementById("admin-auth-form")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const password = document.getElementById("admin-password")?.value;
+
+    // Verify current user is actually admin
+    if (!currentUser || currentUser.userType !== "admin") {
+      alert("Invalid user session!");
+      hideAllContainers();
+      showSplitScreen();
+      if (roleSelectionContainer) roleSelectionContainer.style.display = "block";
+      return;
+    }
+
+    if (password === "admin") {
+      hideAllContainers();
+      if (adminDashboard) adminDashboard.style.display = "block";
+      loadAdminDashboard();
+    } else {
+      alert("Invalid admin verification password!");
+    }
+  });
+
+  // Service card click handlers
+  document.querySelectorAll(".service-btn").forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      const serviceType = this.getAttribute("data-service");
+      hideAllContainers();
+
+      switch (serviceType) {
+        case "request":
+          if (requestFormContainer) requestFormContainer.style.display = "block";
+          break;
+        case "complaint":
+          if (complaintFormContainer) complaintFormContainer.style.display = "block";
+          break;
+        case "other":
+          if (othersFormContainer) othersFormContainer.style.display = "block";
+          updateServicesTable();
+          break;
+      }
+    });
+  });
+
+  // My Submissions button handler
+  trackingBtn?.addEventListener("click", function() {
+    hideAllContainers();
+    if (trackingContainer) trackingContainer.style.display = "block";
+    loadResidentTracking();
+  });
+
+  // Form submission handlers
+  document.getElementById("request-form")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitRequest();
+  });
+
+  document.getElementById("complaint-form")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitComplaint();
+  });
+
+  // Other Services Form submission handler
+  if (otherServicesForm) {
+    otherServicesForm.addEventListener("submit", handleOtherServicesSubmit);
+  }
+
+  // Event listener for service type change to show/hide donation amount field
+  if (serviceType) {
+    serviceType.addEventListener("change", function() {
+      if (donationAmountGroup) {
+        donationAmountGroup.style.display = this.value === 'Donation' ? 'block' : 'none';
+      }
+    });
+  }
+
+  // Event listener for back button
+  if (backToServicesFromOthers) {
+    backToServicesFromOthers.addEventListener("click", function() {
+      hideAllContainers();
+      if (residentContainer) residentContainer.style.display = "block";
+    });
+  }
+
+  // Event listener for filter change
+  if (serviceTypeFilter) {
+    serviceTypeFilter.addEventListener("change", updateServicesTable);
+  }
+
+  // Tab switching for resident tracking
+  document.querySelectorAll(".tracking-tabs .tab-btn").forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      const tabId = this.getAttribute("data-tab");
+
+      // Update active tab button
+      document.querySelectorAll(".tracking-tabs .tab-btn").forEach((b) => {
+        if (b) b.classList.remove("active");
+      });
+      this.classList.add("active");
+
+      // Update active tab content
+      document.querySelectorAll(".tracking-content .tab-content").forEach((content) => {
+        if (content) content.classList.remove("active");
+      });
+      const tabContent = document.getElementById(`${tabId}-tab`);
+      if (tabContent) tabContent.classList.add("active");
+    });
+  });
+
+  // Logout functionality
+  document.querySelectorAll(".logout-btn").forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      currentUser = null;
+      selectedRole = null;
+      localStorage.removeItem("loggedInResident");
+      hideAllContainers();
+      showSplitScreen();
+      if (roleSelectionContainer) roleSelectionContainer.style.display = "block";
+    });
+  });
+
+  // Back button functionality
+  document.querySelectorAll(".back-btn").forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      hideAllContainers();
+
+      if (currentUser) {
+        switch (currentUser.userType) {
+          case "resident":
+            if (residentContainer) residentContainer.style.display = "block";
+            break;
+          case "staff":
+            if (staffContainer) staffContainer.style.display = "block";
+            break;
+          case "admin":
+            if (adminContainer) adminContainer.style.display = "block";
+            break;
+          default:
+            if (loginContainer) loginContainer.style.display = "block";
+        }
+      } else {
+        showSplitScreen();
+        if (roleSelectionContainer) roleSelectionContainer.style.display = "block";
+      }
+    });
+  });
+
+  // Other Services Handling Functions
+  function handleOtherServicesSubmit(e) {
+    e.preventDefault();
+    try {
+      const currentUser = getCurrentUser();
+      if (!currentUser || currentUser.userType !== 'resident') { 
+        throw new Error('Only residents can submit other services');
+      }
+
+      const formData = collectOtherServicesFormData();
+      validateOtherServicesForm(formData);
+      
+      const newService = createOtherService(formData, currentUser);
+      otherServices.push(newService);
+      localStorage.setItem('otherServices', JSON.stringify(otherServices));
+      
+      updateServicesTable();
+      updateManageServicesTable();
+      if (otherServicesForm) otherServicesForm.reset();
+      if (donationAmountGroup) donationAmountGroup.style.display = 'none';
+      
+      console.log("Service submitted:", newService.id);
+      alert('Service submitted successfully!');
+    } catch (error) {
+      console.error("Service submission error:", error.message);
+      alert(error.message);
+    }
+  }
+
+  function collectOtherServicesFormData() {
+    return {
+      serviceType: document.getElementById("serviceType")?.value,
+      details: document.getElementById("serviceDetails")?.value.trim(),
+      donationAmount: document.getElementById("donationAmount")?.value
+    };
+  }
+
+  function validateOtherServicesForm(formData) {
+    if (!formData.serviceType || !formData.details) {
+      throw new Error('Please fill in all required fields');
+    }
+    
+    if (formData.serviceType === 'Donation' && (!formData.donationAmount || formData.donationAmount <= 0)) {
+      throw new Error('Please enter a valid donation amount');
+    }
+  }
+
+  function createOtherService(formData, currentUser) {
+    return {
+      id: "SRV-" + Date.now(),
+      email: currentUser.email,
+      firstName: currentUser.firstName,
+      lastName: currentUser.lastName,
+      serviceType: formData.serviceType,
+      details: formData.details,
+      donationAmount: formData.serviceType === 'Donation' ? parseFloat(formData.donationAmount) : null,
+      date: new Date().toISOString(),
+      status: "Received",
+      verifiedBy: '',
+      verifiedAt: '',
+      createdBy: currentUser.email,
+      isVerified: false
+    };
+  }
+
+  function updateServicesTable() {
+    const currentUser = getCurrentUser();
+    if (!currentUser || !servicesList) return;
+
+    const typeFilterValue = serviceTypeFilter ? serviceTypeFilter.value : 'all';
+    let filteredServices = otherServices.filter(s => 
+      s.createdBy === currentUser.email
+    );
+
+    if (typeFilterValue !== 'all') {
+      filteredServices = filteredServices.filter(s => s.serviceType === typeFilterValue);
+    }
+
+    servicesList.innerHTML = filteredServices
+      .map(service => `
+        <tr>
+          <td>${service.id}</td>
+          <td>${service.serviceType}</td>
+          <td>${new Date(service.date).toLocaleDateString()}</td>
+          <td class="status-${service.status.toLowerCase()}">${service.status}</td>
+          <td>${service.details.substring(0, 30)}${service.details.length > 30 ? '...' : ''}</td>
+          <td>
+            <button class="action-btn view-btn" data-id="${service.id}" data-type="others">View</button>
+          </td>
+        </tr>
+      `)
+      .join('');
+
+    // Add event listeners to view buttons
+    document.querySelectorAll(".view-btn").forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const itemId = this.getAttribute("data-id");
+        const itemType = this.getAttribute("data-type");
+        showDetailsModal(itemId, itemType);
+      });
+    });
+  }
+
+  function updateManageServicesTable() {
+    // This would be called from the staff or admin dashboard to update their view
+    // Implementation would be similar to updateServicesTable but with more columns/actions
+  }
+
+  function getCurrentUser() {
+    return currentUser;
+  }
+
+  // Load resident tracking data
+  function loadResidentTracking() {
+    if (!currentUser) return;
+
+    // Filter for current user's submissions
+    const userRequests = requests.filter((req) => req.email === currentUser.email);
+    const userComplaints = complaints.filter((comp) => comp.email === currentUser.email);
+    const userOtherServices = otherServices.filter((service) => service.createdBy === currentUser.email);
+
+    // Populate requests table
+    const requestsList = document.getElementById("requests-list");
+    if (requestsList) {
+      requestsList.innerHTML = userRequests
+        .map(
+          (req) => `
+        <tr>
+          <td>${req.id}</td>
+          <td>${req.type}</td>
+          <td>${new Date(req.date).toLocaleDateString()}</td>
+          <td class="status-${req.status}">${req.status}</td>
+          <td>
+            <button class="action-btn view-btn" data-id="${req.id}" data-type="request">View</button>
+          </td>
+        </tr>
+      `
+        )
+        .join("");
+    }
+
+    // Populate complaints table
+    const complaintsList = document.getElementById("complaints-list");
+    if (complaintsList) {
+      complaintsList.innerHTML = userComplaints
+        .map(
+          (comp) => `
+        <tr>
+          <td>${comp.id}</td>
+          <td>${comp.type}</td>
+          <td>${new Date(comp.date).toLocaleDateString()}</td>
+          <td class="status-${comp.status}">${comp.status}</td>
+          <td>
+            <button class="action-btn view-btn" data-id="${comp.id}" data-type="complaint">View</button>
+          </td>
+        </tr>
+      `
+        )
+        .join("");
+    }
+
+    // Populate other services table
+    const othersList = document.getElementById("others-list");
+    if (othersList) {
+      othersList.innerHTML = userOtherServices
+        .map(
+          (service) => `
+        <tr>
+          <td>${service.id}</td>
+          <td>${service.serviceType}</td>
+          <td>${new Date(service.date).toLocaleDateString()}</td>
+          <td class="status-${service.status.toLowerCase()}">${service.status}</td>
+          <td>
+            <button class="action-btn view-btn" data-id="${service.id}" data-type="others">View</button>
+          </td>
+        </tr>
+      `
+        )
+        .join("");
+    }
+
+    // Add event listeners to view buttons
+    document.querySelectorAll(".view-btn").forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const itemId = this.getAttribute("data-id");
+        const itemType = this.getAttribute("data-type");
+        showDetailsModal(itemId, itemType);
+      });
+    });
+  }
+
+  // Show details in modal
+  function showDetailsModal(itemId, itemType) {
+    let item;
+    let collection;
+    
+    switch(itemType) {
+      case "request":
+        collection = requests;
+        item = requests.find(r => r.id === itemId);
+        break;
+      case "complaint":
+        collection = complaints;
+        item = complaints.find(c => c.id === itemId);
+        break;
+      case "others":
+        collection = otherServices;
+        item = otherServices.find(s => s.id === itemId);
+        break;
+      default:
+        alert("Invalid item type");
+        return;
+    }
+    
+    if (!item) {
+      alert("Item not found");
+      return;
+    }
+    
+    // Create modal
+    const modal = document.createElement("div");
+    modal.className = "modal";
+    modal.id = "details-modal";
+    
+    // Modal content
+    const modalContent = `
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>${itemType === 'request' ? 'Request' : 
+                itemType === 'complaint' ? 'Complaint' : 'Other Service'} Details</h2>
+          <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="item-details">
+            <p><strong>ID:</strong> ${item.id}</p>
+            <p><strong>Status:</strong> <span class="status-${item.status.toLowerCase()}">${item.status}</span></p>
+            <p><strong>Date Submitted:</strong> ${new Date(item.date).toLocaleDateString()}</p>
+            ${getItemSpecificDetails(item, itemType)}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn print-btn" data-id="${itemId}" data-type="${itemType}">Print</button>
+          ${currentUser?.userType === 'admin' ? 
+            `<button class="btn delete-btn" data-id="${itemId}" data-type="${itemType}">Delete</button>` : ''}
+        </div>
+      </div>
+    `;
+    
+    modal.innerHTML = modalContent;
+    document.body.appendChild(modal);
+    
+    // Close modal when clicking X
+    modal.querySelector(".close-btn")?.addEventListener("click", function() {
+      modal.remove();
+    });
+    
+    // Close modal when clicking outside
+    modal.addEventListener("click", function(event) {
+      if (event.target === modal) {
+        modal.remove();
+      }
+    });
+    
+    // Print button handler
+    modal.querySelector(".print-btn")?.addEventListener("click", function() {
+      printItemDetails(item, itemType);
+    });
+    
+    // Delete button handler (admin only)
+    modal.querySelector(".delete-btn")?.addEventListener("click", function() {
+      if (confirm("Are you sure you want to delete this item?")) {
+        const index = collection.findIndex(i => i.id === itemId);
+        if (index !== -1) {
+          collection.splice(index, 1);
+          localStorage.setItem(`${itemType === 'others' ? 'otherServices' : itemType + 's'}`, JSON.stringify(collection));
+          
+          // Update the appropriate collection variable
+          if (itemType === "request") {
+            requests = collection;
+          } else if (itemType === "complaint") {
+            complaints = collection;
+          } else if (itemType === "others") {
+            otherServices = collection;
+          }
+          
+          // Reload the tracking view if we're there
+          if (trackingContainer && trackingContainer.style.display === "block") {
+            loadResidentTracking();
+          }
+          
+          // Close modal
+          modal.remove();
+          alert("Item deleted successfully");
+        }
+      }
+    });
+    
+    // Show modal
+    modal.style.display = "block";
+  }
+
+  // Helper function to get item-specific details
+  function getItemSpecificDetails(item, itemType) {
+    let details = '';
+    
+    if (itemType === "request") {
+      details = `
+        <p><strong>Type:</strong> ${item.type}</p>
+        <p><strong>Name:</strong> ${item.firstName} ${item.lastName}</p>
+        <p><strong>Address:</strong> ${item.address}</p>
+        <p><strong>Contact:</strong> ${item.contactNumber}</p>
+        <p><strong>Date of Birth:</strong> ${item.dob}</p>
+        <p><strong>Gender:</strong> ${item.gender}</p>
+      `;
+    } else if (itemType === "complaint") {
+      details = `
+        <p><strong>Type:</strong> ${item.type}</p>
+        <p><strong>Name:</strong> ${item.firstName} ${item.lastName}</p>
+        <p><strong>Address:</strong> ${item.address}</p>
+        <p><strong>Contact:</strong> ${item.contactNumber}</p>
+        <p><strong>Details:</strong> ${item.details}</p>
+      `;
+    } else if (itemType === "others") {
+      details = `
+        <p><strong>Service Type:</strong> ${item.serviceType}</p>
+        <p><strong>Name:</strong> ${item.firstName} ${item.lastName}</p>
+        <p><strong>Details:</strong> ${item.details}</p>
+        ${item.serviceType === 'Donation' ? `<p><strong>Donation Amount:</strong> PHP ${item.donationAmount}</p>` : ''}
+      `;
+    }
+    
+    return details;
+  }
+
+  // Print item details
+  function printItemDetails(item, itemType) {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>${itemType === 'request' ? 'Request' : 
+                 itemType === 'complaint' ? 'Complaint' : 'Other Service'} Details #${item.id}</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 20px; }
+          h1 { color: #166088; }
+          .item-info { margin-bottom: 20px; }
+          .status-badge { 
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-weight: bold;
+          }
+          .status-pending { background-color: #ffc107; color: black; }
+          .status-received { background-color: #17a2b8; color: white; }
+          .status-processing { background-color: #17a2b8; color: white; }
+          .status-completed { background-color: #28a745; color: white; }
+        </style>
+      </head>
+      <body>
+        <h1>${itemType === 'request' ? 'Request' : 
+              itemType === 'complaint' ? 'Complaint' : 'Other Service'} Details #${item.id}</h1>
+        <div class="item-info">
+          <p><strong>Status:</strong> <span class="status-badge status-${item.status.toLowerCase()}">${item.status}</span></p>
+          <p><strong>Date Submitted:</strong> ${new Date(item.date).toLocaleDateString()}</p>
+          ${getItemSpecificDetails(item, itemType)}
+        </div>
+        <script>
+          setTimeout(function() {
+            window.print();
+            window.close();
+          }, 500);
+        </script>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
+
+  // Submit request function
+  function submitRequest() {
+    const requestData = {
+      id: "REQ-" + Date.now(),
+      email: currentUser.email,
+      type: document.getElementById("request")?.value,
+      firstName: document.getElementById("first-name-req")?.value,
+      lastName: document.getElementById("last-name-req")?.value,
+      address: document.getElementById("address")?.value,
+      contactNumber: document.getElementById("contact-number")?.value,
+      dob: document.getElementById("dob")?.value,
+      gender: document.getElementById("gender")?.value,
+      date: new Date().toISOString(),
+      status: "pending",
+    };
+
+    requests.push(requestData);
+    localStorage.setItem("requests", JSON.stringify(requests));
+    alert("Request submitted successfully!");
+
+    hideAllContainers();
+    if (residentContainer) residentContainer.style.display = "block";
+  }
+
+  // Submit complaint function
+  function submitComplaint() {
+    const complaintData = {
+      id: "COMP-" + Date.now(),
+      email: currentUser.email,
+      type: document.getElementById("complaint-type")?.value,
+      firstName: document.getElementById("first-name-comp")?.value,
+      lastName: document.getElementById("last-name-comp")?.value,
+      address: document.getElementById("address-comp")?.value,
+      contactNumber: document.getElementById("contact-number-comp")?.value,
+      details: document.getElementById("complaint-details")?.value,
+      date: new Date().toISOString(),
+      status: "pending",
+    };
+
+    complaints.push(complaintData);
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+    alert("Complaint submitted successfully!");
+
+    hideAllContainers();
+    if (residentContainer) residentContainer.style.display = "block";
+  }
+
+  // Load staff dashboard function
+  function loadStaffDashboard() {
+    // Get all submissions
+    requests = JSON.parse(localStorage.getItem("requests")) || [];
+    complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    otherServices = JSON.parse(localStorage.getItem("otherServices")) || [];
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Update counts
+    const pendingCount = document.getElementById("pending-count");
+    if (pendingCount) {
+      pendingCount.textContent =
+        requests.filter((r) => r.status === "pending").length +
+        complaints.filter((c) => c.status === "pending").length +
+        otherServices.filter((s) => s.status === "Received").length;
+    }
+
+    const processingCount = document.getElementById("processing-count");
+    if (processingCount) {
+      processingCount.textContent =
+        requests.filter((r) => r.status === "processing").length +
+        complaints.filter((c) => c.status === "processing").length +
+        otherServices.filter((s) => s.status === "Processing").length;
+    }
+
+    const completedCount = document.getElementById("completed-count");
+    if (completedCount) {
+      completedCount.textContent =
+        requests.filter((r) => r.status === "completed").length +
+        complaints.filter((c) => c.status === "completed").length +
+        otherServices.filter((s) => s.status === "Completed").length;
+    }
+
+    // Populate requests table
+    const requestsList = document.getElementById("staff-requests-list");
+    if (requestsList) {
+      requestsList.innerHTML = requests
+        .map((req) => {
+          const user = allUsers.find((u) => u.email === req.email) || {};
+          return `
+        <tr>
+          <td>${req.id}</td>
+          <td>${user.firstName || ""} ${user.lastName || ""}</td>
+          <td>${req.type}</td>
+          <td>${new Date(req.date).toLocaleDateString()}</td>
+          <td class="status-${req.status}">${req.status}</td>
+          <td>
+            <select class="status-select" data-type="request" data-id="${req.id}">
+              <option value="pending" ${req.status === "pending" ? "selected" : ""}>Pending</option>
+              <option value="processing" ${req.status === "processing" ? "selected" : ""}>Processing</option>
+              <option value="completed" ${req.status === "completed" ? "selected" : ""}>Completed</option>
+            </select>
+          </td>
+          <td>
+            <button class="update-btn" data-type="request" data-id="${req.id}">Update</button>
+            <button class="view-btn" data-type="request" data-id="${req.id}">View</button>
+          </td>
+        </tr>
+      `;
+        })
+        .join("");
+    }
+
+    // Populate complaints table
+    const complaintsList = document.getElementById("staff-complaints-list");
+    if (complaintsList) {
+      complaintsList.innerHTML = complaints
+        .map((comp) => {
+          const user = allUsers.find((u) => u.email === comp.email) || {};
+          return `
+        <tr>
+          <td>${comp.id}</td>
+          <td>${user.firstName || ""} ${user.lastName || ""}</td>
+          <td>${comp.type}</td>
+          <td>${new Date(comp.date).toLocaleDateString()}</td>
+          <td class="status-${comp.status}">${comp.status}</td>
+          <td>
+            <select class="status-select" data-type="complaint" data-id="${comp.id}">
+              <option value="pending" ${comp.status === "pending" ? "selected" : ""}>Pending</option>
+              <option value="processing" ${comp.status === "processing" ? "selected" : ""}>Processing</option>
+              <option value="completed" ${comp.status === "completed" ? "selected" : ""}>Completed</option>
+            </select>
+          </td>
+          <td>
+            <button class="update-btn" data-type="complaint" data-id="${comp.id}">Update</button>
+            <button class="view-btn" data-type="complaint" data-id="${comp.id}">View</button>
+          </td>
+        </tr>
+      `;
+        })
+        .join("");
+    }
+
+    // Populate other services table
+    const othersList = document.getElementById("staff-others-list");
+    if (othersList) {
+      othersList.innerHTML = otherServices
+        .map((service) => {
+          const user = allUsers.find((u) => u.email === service.createdBy) || {};
+          return `
+        <tr>
+          <td>${service.id}</td>
+          <td>${user.firstName || ""} ${user.lastName || ""}</td>
+          <td>${service.serviceType}</td>
+          <td>${new Date(service.date).toLocaleDateString()}</td>
+          <td class="status-${service.status.toLowerCase()}">${service.status}</td>
+          <td>
+            <select class="status-select" data-type="others" data-id="${service.id}">
+              <option value="Received" ${service.status === "Received" ? "selected" : ""}>Received</option>
+              <option value="Processing" ${service.status === "Processing" ? "selected" : ""}>Processing</option>
+              <option value="Completed" ${service.status === "Completed" ? "selected" : ""}>Completed</option>
+            </select>
+          </td>
+          <td>
+            <button class="update-btn" data-type="others" data-id="${service.id}">Update</button>
+            <button class="view-btn" data-type="others" data-id="${service.id}">View</button>
+          </td>
+        </tr>
+      `;
+        })
+        .join("");
+    }
+
+    // Set up tab switching for staff dashboard
+    document.querySelectorAll(".submission-tabs .tab-btn").forEach((btn) => {
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        const tabId = this.getAttribute("data-tab");
+
+        // Update active tab button
+        document.querySelectorAll(".submission-tabs .tab-btn").forEach((b) => {
+          if (b) b.classList.remove("active");
         });
+        this.classList.add("active");
+
+        // Update active tab content
+        document.querySelectorAll(".submission-content .tab-content").forEach((content) => {
+          if (content) content.classList.remove("active");
+        });
+        const tabContent = document.getElementById(`${tabId}-tab-staff`);
+        if (tabContent) tabContent.classList.add("active");
+      });
+    });
+
+    // Add event listeners to view buttons
+    document.querySelectorAll(".view-btn").forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const itemId = this.getAttribute("data-id");
+        const itemType = this.getAttribute("data-type");
+        showDetailsModal(itemId, itemType);
+      });
+    });
+
+    // Add event listeners to update buttons
+    document.querySelectorAll(".update-btn").forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const type = this.getAttribute("data-type");
+        const id = this.getAttribute("data-id");
+        const select = document.querySelector(`.status-select[data-type="${type}"][data-id="${id}"]`);
+        if (!select) return;
+        
+        const newStatus = select.value;
+
+        // Update in localStorage
+        let items;
+        if (type === "request") {
+          items = requests;
+        } else if (type === "complaint") {
+          items = complaints;
+        } else if (type === "others") {
+          items = otherServices;
+        }
+
+        const itemIndex = items.findIndex((item) => item.id === id);
+        if (itemIndex !== -1) {
+          items[itemIndex].status = newStatus;
+          // Add who updated this
+          items[itemIndex].updatedBy = currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : "Staff";
+
+          // Save back to localStorage
+          if (type === "request") {
+            localStorage.setItem("requests", JSON.stringify(items));
+          } else if (type === "complaint") {
+            localStorage.setItem("complaints", JSON.stringify(items));
+          } else if (type === "others") {
+            localStorage.setItem("otherServices", JSON.stringify(items));
+          }
+
+          alert("Status updated successfully!");
+          loadStaffDashboard();
+        }
+      });
+    });
+  }
+
+  // Load admin dashboard
+  function loadAdminDashboard() {
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+    requests = JSON.parse(localStorage.getItem("requests")) || [];
+    complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    otherServices = JSON.parse(localStorage.getItem("otherServices")) || [];
+
+    // Update counts
+    const totalUsers = document.getElementById("total-users");
+    if (totalUsers) totalUsers.textContent = allUsers.length;
+
+    const activeStaff = document.getElementById("active-staff");
+    if (activeStaff) {
+      activeStaff.textContent = allUsers.filter(
+        (u) => u.userType === "staff"
+      ).length;
     }
 
-    function togglePasswordVisibility(inputField, toggleButton) {
-        if (inputField.type === 'password') {
-            inputField.type = 'text';
-            toggleButton.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                    <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            `;
+    const pendingIssues = document.getElementById("pending-issues");
+    if (pendingIssues) {
+      pendingIssues.textContent =
+        requests.filter((r) => r.status === "pending").length +
+        complaints.filter((c) => c.status === "pending").length +
+        otherServices.filter((s) => s.status === "Received").length;
+    }
+
+    // Populate resident email dropdown
+    const residentEmailSelect = document.getElementById("resident-email");
+    if (residentEmailSelect) {
+      residentEmailSelect.innerHTML =
+        '<option value="">Select Resident</option>' +
+        allUsers
+          .filter((u) => u.userType === "resident")
+          .map(
+            (user) =>
+              `<option value="${user.email}">${user.firstName} ${user.lastName} (${user.email})</option>`
+          )
+          .join("");
+    }
+
+    // Load status board
+    loadAdminStatusBoard();
+
+    // Admin navigation button handlers
+    document.querySelectorAll(".admin-nav-btn").forEach((btn) => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const page = this.getAttribute("data-page");
+        
+        // Update active button
+        document.querySelectorAll(".admin-nav-btn").forEach(b => {
+          if (b) b.classList.remove("active");
+        });
+        this.classList.add("active");
+        
+        // Show the correct page
+        const adminActions = document.querySelector(".admin-actions");
+        const statusBoard = document.getElementById("admin-status-board");
+        
+        if (page === "dashboard") {
+          if (adminActions) adminActions.style.display = "block";
+          if (statusBoard) statusBoard.style.display = "none";
         } else {
-            inputField.type = 'password';
-            toggleButton.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                </svg>
-            `;
+          if (adminActions) adminActions.style.display = "none";
+          if (statusBoard) statusBoard.style.display = "block";
+          loadAdminStatusBoard();
         }
+      });
+    });
+
+    // Tab switching for admin status board
+    document.querySelectorAll("#admin-status-board .tab-btn").forEach((btn) => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const tabId = this.getAttribute("data-tab");
+
+        // Update active tab button
+        document.querySelectorAll("#admin-status-board .tab-btn").forEach((b) => {
+          if (b) b.classList.remove("active");
+        });
+        this.classList.add("active");
+
+        // Update active tab content
+        document.querySelectorAll("#admin-status-board .tab-content").forEach((content) => {
+          if (content) content.classList.remove("active");
+        });
+        const tabContent = document.getElementById(`${tabId}-tab-admin`);
+        if (tabContent) tabContent.classList.add("active");
+      });
+    });
+  }
+
+  // Load admin status board function
+  function loadAdminStatusBoard() {
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+    requests = JSON.parse(localStorage.getItem("requests")) || [];
+    complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    otherServices = JSON.parse(localStorage.getItem("otherServices")) || [];
+
+    // Populate requests table
+    const requestsList = document.getElementById("admin-requests-list");
+    if (requestsList) {
+      requestsList.innerHTML = requests
+        .map((req) => {
+          const user = allUsers.find((u) => u.email === req.email) || {};
+          return `
+            <tr>
+              <td>${req.id}</td>
+              <td>${user.firstName || ""} ${user.lastName || ""}</td>
+              <td>${req.type}</td>
+              <td>${new Date(req.date).toLocaleDateString()}</td>
+              <td class="status-${req.status}">${req.status}</td>
+              <td>${req.updatedBy || "N/A"}</td>
+              <td>
+                <button class="view-btn" data-type="request" data-id="${req.id}">View</button>
+                <button class="delete-btn" data-type="request" data-id="${req.id}">Delete</button>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
     }
 
-    // View Management Functions
-    function showLoginPage() {
-        if (loginPage) loginPage.style.display = 'flex';
-        if (signupPage) signupPage.style.display = 'none';
-        if (dashboardPage) dashboardPage.style.display = 'none';
-        showAccountSelection();
+    // Populate complaints table
+    const complaintsList = document.getElementById("admin-complaints-list");
+    if (complaintsList) {
+      complaintsList.innerHTML = complaints
+        .map((comp) => {
+          const user = allUsers.find((u) => u.email === comp.email) || {};
+          return `
+            <tr>
+              <td>${comp.id}</td>
+              <td>${user.firstName || ""} ${user.lastName || ""}</td>
+              <td>${comp.type}</td>
+              <td>${new Date(comp.date).toLocaleDateString()}</td>
+              <td class="status-${comp.status}">${comp.status}</td>
+              <td>${comp.updatedBy || "N/A"}</td>
+              <td>
+                <button class="view-btn" data-type="complaint" data-id="${comp.id}">View</button>
+                <button class="delete-btn" data-type="complaint" data-id="${comp.id}">Delete</button>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
     }
 
-    function showDashboard(user) {
-        if (loginPage) loginPage.style.display = 'none';
-        if (signupPage) signupPage.style.display = 'none';
-        if (dashboardPage) dashboardPage.style.display = 'block';
-        document.body.classList.add(`role-${user.role}`);
-        updateUIForUserRole(user.role);
+    // Populate other services table
+    const othersList = document.getElementById("admin-others-list");
+    if (othersList) {
+      othersList.innerHTML = otherServices
+        .map((service) => {
+          const user = allUsers.find((u) => u.email === service.createdBy) || {};
+          return `
+            <tr>
+              <td>${service.id}</td>
+              <td>${user.firstName || ""} ${user.lastName || ""}</td>
+              <td>${service.serviceType}</td>
+              <td>${new Date(service.date).toLocaleDateString()}</td>
+              <td class="status-${service.status.toLowerCase()}">${service.status}</td>
+              <td>${service.updatedBy || "N/A"}</td>
+              <td>
+                <button class="view-btn" data-type="others" data-id="${service.id}">View</button>
+                <button class="delete-btn" data-type="others" data-id="${service.id}">Delete</button>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
     }
 
-    function updateUIForUserRole(role) {
-        if (userRoleDisplay) userRoleDisplay.textContent = role.charAt(0).toUpperCase() + role.slice(1);
+    // Add event listeners to view buttons
+    document.querySelectorAll(".view-btn").forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const itemId = this.getAttribute("data-id");
+        const itemType = this.getAttribute("data-type");
+        showDetailsModal(itemId, itemType);
+      });
+    });
+
+    // Add event listeners to delete buttons
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener("click", function() {
+        const itemId = this.getAttribute("data-id");
+        const itemType = this.getAttribute("data-type");
         
-        // Reset all displays
-        if (staffDashboard) staffDashboard.style.display = 'none';
-        if (adminDashboard) adminDashboard.style.display = 'none';
-        if (complaintFormSection) complaintFormSection.style.display = 'none';
-        if (trackingDashboard) trackingDashboard.style.display = 'none';
-        if (generateReportBtn) generateReportBtn.style.display = 'none';
-        if (adminGenerateReportBtn) adminGenerateReportBtn.style.display = 'none';
-        if (serviceSelection) serviceSelection.style.display = 'none';
-        if (complaintsSection) complaintsSection.style.display = 'none';
-        if (documentsSection) documentsSection.style.display = 'none';
-        if (othersSection) othersSection.style.display = 'none';
-        if (staffAdminServiceSelection) staffAdminServiceSelection.style.display = 'none';
-        if (manageComplaintsSection) manageComplaintsSection.style.display = 'none';
-        if (manageDocumentsSection) manageDocumentsSection.style.display = 'none';
-        if (manageOthersSection) manageOthersSection.style.display = 'none';
-        if (adminVerifiedComplaintsSection) adminVerifiedComplaintsSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = role === 'resident' ? 'block' : 'none';
-        
-        // Update table titles based on role
-        if (role === 'staff') {
-            if (complaintsTitle) complaintsTitle.textContent = 'Complaints/Requests (Pending Verification)';
-            if (documentsTitle) documentsTitle.textContent = 'Document Requests (Pending Verification)';
-            if (servicesTitle) servicesTitle.textContent = 'Other Services (Pending Verification)';
-            if (manageComplaintsHeader) manageComplaintsHeader.textContent = 'Complaints/Requests (Pending Verification)';
-            if (manageDocumentsHeader) manageDocumentsHeader.textContent = 'Document Requests (Pending Verification)';
-            if (manageServicesHeader) manageServicesHeader.textContent = 'Other Services (Pending Verification)';
-            showStaffAdminServiceSelection();
-        } else if (role === 'admin') {
-            if (complaintsTitle) complaintsTitle.textContent = 'All Verified Complaints/Requests';
-            if (documentsTitle) documentsTitle.textContent = 'All Verified Document Requests';
-            if (servicesTitle) servicesTitle.textContent = 'All Verified Other Services';
-            if (manageComplaintsHeader) manageComplaintsHeader.textContent = 'All Verified Complaints/Requests';
-            if (manageDocumentsHeader) manageDocumentsHeader.textContent = 'All Verified Document Requests';
-            if (manageServicesHeader) manageServicesHeader.textContent = 'All Verified Other Services';
-            showStaffAdminServiceSelection();
-        } else if (role === 'resident') {
-            showServiceSelection();
+        if (confirm("Are you sure you want to delete this item?")) {
+          let collection;
+          if (itemType === "request") {
+            collection = requests;
+          } else if (itemType === "complaint") {
+            collection = complaints;
+          } else if (itemType === "others") {
+            collection = otherServices;
+          }
+          
+          const index = collection.findIndex(i => i.id === itemId);
+          if (index !== -1) {
+            collection.splice(index, 1);
+            localStorage.setItem(`${itemType === 'others' ? 'otherServices' : itemType + 's'}`, JSON.stringify(collection));
+            
+            // Update the appropriate collection variable
+            if (itemType === "request") {
+              requests = collection;
+            } else if (itemType === "complaint") {
+              complaints = collection;
+            } else if (itemType === "others") {
+              otherServices = collection;
+            }
+            
+            // Reload the admin status board
+            loadAdminStatusBoard();
+            alert("Item deleted successfully");
+          }
         }
-    }
+      });
+    });
+  }
+  
+  // Store new notification
+  function addResidentNotification(email, subject, message) {
+    const current = JSON.parse(localStorage.getItem("residentNotifications") || "[]");
+    const newNotif = {
+      email,
+      subject,
+      message,
+      time: new Date().toLocaleString()
+    };
+    current.push(newNotif);
+    localStorage.setItem("residentNotifications", JSON.stringify(current));
 
-    // Account Type Selection
-    function showAccountSelection() {
-        if (accountTypeSelector) accountTypeSelector.style.display = 'flex';
-        if (welcomeMessage) welcomeMessage.textContent = "Please select your account type";
-        if (residentLoginForm) residentLoginForm.style.display = 'none';
-        if (staffLoginForm) staffLoginForm.style.display = 'none';
-        if (adminLoginForm) adminLoginForm.style.display = 'none';
-        if (backToSelection) backToSelection.style.display = 'none';
+    // If resident is currently logged in and matches, show popup
+    const active = localStorage.getItem("loggedInResident");
+    if (active && active === email) {
+      alert(`📬 New Notification:\n${subject}\n${message}`);
+      showResidentNotifications(email); // Refresh panel
     }
+  }
 
-    function showResidentLogin() {
-        if (accountTypeSelector) accountTypeSelector.style.display = 'none';
-        if (welcomeMessage) welcomeMessage.textContent = "Resident Login";
-        if (residentLoginForm) residentLoginForm.style.display = 'block';
-        if (staffLoginForm) staffLoginForm.style.display = 'none';
-        if (adminLoginForm) adminLoginForm.style.display = 'none';
-        if (backToSelection) backToSelection.style.display = 'block';
+  // Display notifications for a resident
+  function showResidentNotifications(currentEmail) {
+    const notifList = document.getElementById("notif-list");
+    const notifCount = document.getElementById("notif-count");
+    if (!notifList || !notifCount) return;
+    
+    const all = JSON.parse(localStorage.getItem("residentNotifications") || "[]");
+    const userNotifs = all.filter(n => n.email === currentEmail);
+
+    notifList.innerHTML = "";
+    if (userNotifs.length > 0) {
+      notifCount.textContent = userNotifs.length;
+      userNotifs.reverse().forEach(n => {
+        const li = document.createElement("li");
+        li.textContent = `${n.subject}: ${n.message} (${n.time})`;
+        notifList.appendChild(li);
+      });
+    } else {
+      notifList.innerHTML = "<li>No notifications.</li>";
+      notifCount.textContent = "0";
     }
+  }
 
-    function showStaffLogin() {
-        if (accountTypeSelector) accountTypeSelector.style.display = 'none';
-        if (welcomeMessage) welcomeMessage.textContent = "Staff Login";
-        if (residentLoginForm) residentLoginForm.style.display = 'none';
-        if (staffLoginForm) staffLoginForm.style.display = 'block';
-        if (adminLoginForm) adminLoginForm.style.display = 'none';
-        if (backToSelection) backToSelection.style.display = 'block';
-    }
+  // Toggle notification dropdown
+  if (notifIcon) {
+    notifIcon.addEventListener("click", () => {
+      if (notifPanel) {
+        notifPanel.style.display = notifPanel.style.display === "none" ? "block" : "none";
+      }
+    });
+  }
 
-    function showAdminLogin() {
-        if (accountTypeSelector) accountTypeSelector.style.display = 'none';
-        if (welcomeMessage) welcomeMessage.textContent = "Admin Login";
-        if (residentLoginForm) residentLoginForm.style.display = 'none';
-        if (staffLoginForm) staffLoginForm.style.display = 'none';
-        if (adminLoginForm) adminLoginForm.style.display = 'block';
-        if (backToSelection) backToSelection.style.display = 'block';
-    }
-
-    function handleLogin(e) {
+  // Admin email form listener
+  const waitForAdminForm = setInterval(() => {
+    const emailForm = document.getElementById("email-form");
+    if (emailForm && !emailForm.dataset.listenerAdded) {
+      emailForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        try {
-            let usernameField, passwordField, formElement;
-            
-            if (e.target.id === 'staffLoginForm') {
-                usernameField = 'staffUsername';
-                passwordField = 'staffPassword';
-                formElement = document.getElementById('staffLoginForm');
-            } else if (e.target.id === 'adminLoginForm') {
-                usernameField = 'adminUsername';
-                passwordField = 'adminPassword';
-                formElement = document.getElementById('adminLoginForm');
-            } else {
-                usernameField = 'username';
-                passwordField = 'password';
-                formElement = document.getElementById('loginForm');
-            }
-            
-            const username = document.getElementById(usernameField).value.trim();
-            const password = document.getElementById(passwordField).value.trim();
 
-            if (!username || !password) {
-                throw new Error('Username and password are required');
-            }
+        const email = document.getElementById("resident-email")?.value.trim();
+        const subject = document.getElementById("email-subject")?.value.trim();
+        const message = document.getElementById("email-message")?.value.trim();
 
-            const user = authenticateUser(username, password);
-            sessionStorage.setItem('currentUser', JSON.stringify(user));
-            
-            showDashboard(user);
-            
-            if (formElement && typeof formElement.reset === 'function') {
-                formElement.reset();
-            }
-            
-            console.log("Login successful:", username);
-        } catch (error) {
-            console.error("Login error:", error.message);
-            if (e.target.id === 'staffLoginForm') {
-                document.getElementById('staffPassword').value = '';
-            } else if (e.target.id === 'adminLoginForm') {
-                document.getElementById('adminPassword').value = '';
-            } else {
-                document.getElementById('password').value = '';
-            }
-            alert(error.message);
-        }
-    }
-
-    function authenticateUser(username, password) {
-        const user = userAccounts.find(account => 
-            account.username === username && account.password === password
-        );
-        
-        if (!user) {
-            throw new Error('Invalid username or password');
-        }
-        return user;
-    }
-
-    function handleSignup(e) {
-        e.preventDefault();
-        try {
-            const formData = {
-                name: document.getElementById('signupName').value.trim(),
-                email: document.getElementById('signupEmail').value.trim(),
-                username: document.getElementById('signupUsername').value.trim(),
-                password: document.getElementById('signupPassword').value,
-                confirmPassword: document.getElementById('signupConfirmPassword').value,
-                role: document.getElementById('userRole').value || 'resident'
-            };
-
-            validateSignup(formData);
-            const newUser = createUserAccount(formData);
-            
-            userAccounts.push(newUser);
-            localStorage.setItem('userAccounts', JSON.stringify(userAccounts));
-            
-            if (signupPage) signupPage.style.display = 'none';
-            if (loginPage) loginPage.style.display = 'flex';
-            if (signupForm) signupForm.reset();
-            
-            console.log("Signup successful:", newUser.username);
-            alert('Account created successfully! Please login.');
-        } catch (error) {
-            console.error("Signup error:", error.message);
-            alert(error.message);
-        }
-    }
-
-    function validateSignup(formData) {
-        if (!formData.name || !formData.email || !formData.username || 
-            !formData.password || !formData.confirmPassword || !formData.role) {
-            throw new Error('Please fill in all fields');
-        }
-
-        if (formData.password !== formData.confirmPassword) {
-            throw new Error('Passwords do not match');
-        }
-
-        if (userAccounts.some(account => account.username.toLowerCase() === formData.username.toLowerCase())) {
-            throw new Error('Username already exists');
-        }
-
-        if (userAccounts.some(account => account.email.toLowerCase() === formData.email.toLowerCase())) {
-            throw new Error('Email already registered');
-        }
-
-        if (formData.password.length < 6) {
-            throw new Error('Password must be at least 6 characters long');
-        }
-    }
-
-    function createUserAccount(formData) {
-        return { 
-            id: Date.now().toString(),
-            username: formData.username, 
-            password: formData.password, 
-            name: formData.name, 
-            email: formData.email,
-            role: formData.role 
-        };
-    }
-
-    function logout() {
-        const currentUser = getCurrentUser();
-        if (currentUser) {
-            console.log("Logging out user:", currentUser.username);
-            document.body.classList.remove(`role-${currentUser.role}`);
-        }  
-        sessionStorage.removeItem('currentUser');
-        showLoginPage();
-        resetAllForms();
-    }
-
-    // Service Selection Functions
-    function showServiceSelection() {
-        if (serviceSelection) serviceSelection.style.display = 'block';
-        if (complaintsSection) complaintsSection.style.display = 'none';
-        if (documentsSection) documentsSection.style.display = 'none';
-        if (othersSection) othersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-    }
-
-    function showComplaintsSection() {
-        if (serviceSelection) serviceSelection.style.display = 'none';
-        if (complaintsSection) complaintsSection.style.display = 'grid';
-        if (complaintFormSection) complaintFormSection.style.display = 'block';
-        if (trackingDashboard) trackingDashboard.style.display = 'block';
-        if (documentsSection) documentsSection.style.display = 'none';
-        if (othersSection) othersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        updateComplaintsTable();
-    }
-
-    function showDocumentsSection() {
-        if (serviceSelection) serviceSelection.style.display = 'none';
-        if (complaintsSection) complaintsSection.style.display = 'none';
-        if (documentsSection) documentsSection.style.display = 'block';
-        if (othersSection) othersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        updateDocumentsTable();
-    }
-
-    function showOthersSection() {
-        if (serviceSelection) serviceSelection.style.display = 'none';
-        if (complaintsSection) complaintsSection.style.display = 'none';
-        if (documentsSection) documentsSection.style.display = 'none';
-        if (othersSection) othersSection.style.display = 'block';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        updateServicesTable();
-    }
-
-    function showStaffAdminServiceSelection() {
-        if (staffAdminServiceSelection) staffAdminServiceSelection.style.display = 'block';
-        if (manageComplaintsSection) manageComplaintsSection.style.display = 'none';
-        if (manageDocumentsSection) manageDocumentsSection.style.display = 'none';
-        if (manageOthersSection) manageOthersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        if (staffDashboard) staffDashboard.style.display = 'none';
-        if (adminDashboard) adminDashboard.style.display = 'none';
-        if (adminVerifiedComplaintsSection) adminVerifiedComplaintsSection.style.display = 'none';
-    }
-
-    function showManageComplaintsSection() {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        if (staffAdminServiceSelection) staffAdminServiceSelection.style.display = 'none';
-        if (manageComplaintsSection) manageComplaintsSection.style.display = 'block';
-        if (manageDocumentsSection) manageDocumentsSection.style.display = 'none';
-        if (manageOthersSection) manageOthersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        if (staffDashboard) staffDashboard.style.display = 'none';
-        if (adminDashboard) adminDashboard.style.display = 'none';
-        if (adminVerifiedComplaintsSection) adminVerifiedComplaintsSection.style.display = 'none';
-
-        if (currentUser.role === 'staff' && manageComplaintsHeader) {
-            manageComplaintsHeader.textContent = 'Complaints/Requests (Pending Verification)';
-        } else if (currentUser.role === 'admin' && manageComplaintsHeader) {
-            manageComplaintsHeader.textContent = 'All Verified Complaints/Requests';
-        }
-
-        updateManageComplaintsTable();
-    }
-
-    function showManageDocumentsSection() {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        if (staffAdminServiceSelection) staffAdminServiceSelection.style.display = 'none';
-        if (manageComplaintsSection) manageComplaintsSection.style.display = 'none';
-        if (manageDocumentsSection) manageDocumentsSection.style.display = 'block';
-        if (manageOthersSection) manageOthersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        if (staffDashboard) staffDashboard.style.display = 'none';
-        if (adminDashboard) adminDashboard.style.display = 'none';
-        if (adminVerifiedComplaintsSection) adminVerifiedComplaintsSection.style.display = 'none';
-
-        if (currentUser.role === 'staff' && manageDocumentsHeader) {
-            manageDocumentsHeader.textContent = 'Document Requests (Pending Verification)';
-        } else if (currentUser.role === 'admin' && manageDocumentsHeader) {
-            manageDocumentsHeader.textContent = 'All Verified Document Requests';
-        }
-
-        updateManageDocumentsTable();
-    }
-
-    function showManageOthersSection() {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        if (staffAdminServiceSelection) staffAdminServiceSelection.style.display = 'none';
-        if (manageComplaintsSection) manageComplaintsSection.style.display = 'none';
-        if (manageDocumentsSection) manageDocumentsSection.style.display = 'none';
-        if (manageOthersSection) manageOthersSection.style.display = 'block';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        if (staffDashboard) staffDashboard.style.display = 'none';
-        if (adminDashboard) adminDashboard.style.display = 'none';
-        if (adminVerifiedComplaintsSection) adminVerifiedComplaintsSection.style.display = 'none';
-
-        if (currentUser.role === 'staff' && manageServicesHeader) {
-            manageServicesHeader.textContent = 'Other Services (Pending Verification)';
-        } else if (currentUser.role === 'admin' && manageServicesHeader) {
-            manageServicesHeader.textContent = 'All Verified Other Services';
-        }
-
-        updateManageServicesTable();
-    }
-
-    function showAdminVerifiedComplaints() {
-        if (staffAdminServiceSelection) staffAdminServiceSelection.style.display = 'none';
-        if (manageComplaintsSection) manageComplaintsSection.style.display = 'none';
-        if (manageDocumentsSection) manageDocumentsSection.style.display = 'none';
-        if (manageOthersSection) manageOthersSection.style.display = 'none';
-        if (publicViewSection) publicViewSection.style.display = 'none';
-        if (staffDashboard) staffDashboard.style.display = 'none';
-        if (adminDashboard) adminDashboard.style.display = 'none';
-        if (adminVerifiedComplaintsSection) adminVerifiedComplaintsSection.style.display = 'block';
-        updateAdminVerifiedComplaintsTable();
-    }
-
-    function handleComplaintSubmit(e) {
-        e.preventDefault();
-        try {
-            const currentUser = getCurrentUser();
-            if (!currentUser || currentUser.role !== 'resident') {
-                throw new Error('Only residents can submit complaints');
-            }
-
-            const formData = collectComplaintFormData();
-            validateComplaintForm(formData);
-            
-            const newComplaint = createComplaint(formData, currentUser);
-            complaints.push(newComplaint);
-            
-            // Force update localStorage
-            localStorage.setItem('complaints', JSON.stringify(complaints));
-            
-            // Debug output
-            console.log('New complaint created:', newComplaint);
-            console.log('All complaints:', complaints);
-            
-            // Update all views
-            updateComplaintsTable();
-            updateManageComplaintsTable();
-            if (adminComplaintsList) updateAdminComplaintsTable();
-            if (adminVerifiedComplaintsList) updateAdminVerifiedComplaintsTable();
-            
-            if (complaintForm) complaintForm.reset();
-            
-            alert('Complaint submitted successfully! It will be reviewed by staff.');
-        } catch (error) {
-            console.error("Complaint submission error:", error);
-            alert(error.message);
-        }
-    }
-
-    function collectComplaintFormData() {
-        return {
-            name: document.getElementById('residentName').value.trim(),
-            age: document.getElementById('residentAge').value.trim(),
-            address: document.getElementById('residentAddress').value.trim(),
-            email: document.getElementById('residentEmail').value.trim(),
-            contact: document.getElementById('residentContact').value.trim(),
-            type: document.getElementById('complaintType').value,
-            details: document.getElementById('complaintDetails').value.trim(),
-            location: document.getElementById('complaintLocation').value.trim(),
-            photoFile: document.getElementById('photoUpload').files[0]
-        };
-    }
-
-    function validateComplaintForm(formData) {
-        if (!formData.name || !formData.age || !formData.address || 
-            !formData.email || !formData.contact || !formData.type || 
-            !formData.details || !formData.location) {
-            throw new Error('Please fill in all required fields');
-        }
-    }
-
-    function createComplaint(formData, currentUser) {
-        return {
-            id: complaints.length > 0 ? Math.max(...complaints.map(c => c.id)) + 1 : 1,
-            residentName: formData.name,
-            residentAge: formData.age,
-            residentAddress: formData.address,
-            residentEmail: formData.email,
-            residentContact: formData.contact,
-            residentUsername: currentUser.username,
-            residentId: currentUser.id,
-            type: formData.type,
-            details: formData.details,
-            location: formData.location,
-            date: new Date().toISOString().split('T')[0],
-            status: 'Pending',
-            photo: formData.photoFile ? URL.createObjectURL(formData.photoFile) : null,
-            assignedStaff: '',
-            resolutionNotes: '',
-            verifiedBy: '',
-            verifiedAt: '',
-            createdBy: currentUser.username,
-            createdById: currentUser.id,
-            isVerified: false,
-            needsVerification: true
-        };
-    }
-
-    // Document Request Handling Functions
-    function handleDocumentRequestSubmit(e) {
-        e.preventDefault();
-        try {
-            const currentUser = getCurrentUser();
-            if (!currentUser || currentUser.role !== 'resident') {
-                throw new Error('Only residents can request documents');
-            }
-
-            const formData = collectDocumentRequestFormData();
-            validateDocumentRequestForm(formData);
-            
-            const newDocument = createDocumentRequest(formData, currentUser);
-            documents.push(newDocument);
-            localStorage.setItem('documents', JSON.stringify(documents));
-            
-            updateDocumentsTable();
-            updateManageDocumentsTable();
-            if (documentRequestForm) documentRequestForm.reset();
-            
-            console.log("Document request submitted:", newDocument.id);
-            alert('Document request submitted successfully!');
-        } catch (error) {
-            console.error("Document request error:", error.message);
-            alert(error.message);
-        }
-    }
-
-    function collectDocumentRequestFormData() {
-        return {
-            documentType: document.getElementById('documentType').value,
-            purpose: document.getElementById('documentPurpose').value.trim(),
-            notes: document.getElementById('documentNotes').value.trim()
-        };
-    }
-
-    function validateDocumentRequestForm(formData) {
-        if (!formData.documentType || !formData.purpose) {
-            throw new Error('Please fill in all required fields');
-        }
-    }
-
-    function createDocumentRequest(formData, currentUser) {
-        return {
-            id: documents.length > 0 ? Math.max(...documents.map(d => d.id)) + 1 : 1,
-            residentName: currentUser.name,
-            residentUsername: currentUser.username,
-            residentId: currentUser.id,
-            documentType: formData.documentType,
-            purpose: formData.purpose,
-            notes: formData.notes,
-            dateRequested: new Date().toISOString().split('T')[0],
-            status: 'Pending',
-            processedBy: '',
-            dateProcessed: '',
-            verifiedBy: '',
-            verifiedAt: '',
-            createdBy: currentUser.username,
-            createdById: currentUser.id,
-            isVerified: false
-        };
-    }
-
-    // Other Services Handling Functions
-    function handleOtherServicesSubmit(e) {
-        e.preventDefault();
-        try {
-            const currentUser = getCurrentUser();
-            if (!currentUser || currentUser.role !== 'resident') {
-                throw new Error('Only residents can submit other services');
-            }
-
-            const formData = collectOtherServicesFormData();
-            validateOtherServicesForm(formData);
-            
-            const newService = createOtherService(formData, currentUser);
-            otherServices.push(newService);
-            localStorage.setItem('otherServices', JSON.stringify(otherServices));
-            
-            updateServicesTable();
-            updateManageServicesTable();
-            if (otherServicesForm) otherServicesForm.reset();
-            if (donationAmountGroup) donationAmountGroup.style.display = 'none';
-            
-            console.log("Service submitted:", newService.id);
-            alert('Service submitted successfully!');
-        } catch (error) {
-            console.error("Service submission error:", error.message);
-            alert(error.message);
-        }
-    }
-
-    function collectOtherServicesFormData() {
-        return {
-            serviceType: document.getElementById('serviceType').value,
-            details: document.getElementById('serviceDetails').value.trim(),
-            donationAmount: document.getElementById('donationAmount')?.value
-        };
-    }
-
-    function validateOtherServicesForm(formData) {
-        if (!formData.serviceType || !formData.details) {
-            throw new Error('Please fill in all required fields');
-        }
-        
-        if (formData.serviceType === 'Donation' && (!formData.donationAmount || formData.donationAmount <= 0)) {
-            throw new Error('Please enter a valid donation amount');
-        }
-    }
-
-    function createOtherService(formData, currentUser) {
-        return {
-            id: otherServices.length > 0 ? Math.max(...otherServices.map(s => s.id)) + 1 : 1,
-            residentName: currentUser.name,
-            residentUsername: currentUser.username,
-            residentId: currentUser.id,
-            serviceType: formData.serviceType,
-            details: formData.details,
-            donationAmount: formData.serviceType === 'Donation' ? parseFloat(formData.donationAmount) : null,
-            dateSubmitted: new Date().toISOString().split('T')[0],
-            status: 'Received',
-            verifiedBy: '',
-            verifiedAt: '',
-            createdBy: currentUser.username,
-            createdById: currentUser.id,
-            isVerified: false
-        };
-    }
-
-    function updateComplaintResolution(complaintId, feedback, staffName) {
-        const complaint = complaints.find(c => c.id === complaintId);
-        if (complaint) {
-            complaint.resolutionNotes = feedback;
-            complaint.status = 'Resolved';
-            complaint.assignedStaff = staffName;
-            localStorage.setItem('complaints', JSON.stringify(complaints));
+        if (email && subject && message) {
+          addResidentNotification(email, subject, message);
+          alert(`📧 Simulated Email Sent to: ${email}`);
+          emailForm.reset();
         } else {
-            throw new Error('Complaint not found');
+          alert("⚠️ Please fill all fields.");
         }
+      });
+
+      emailForm.dataset.listenerAdded = "true";
+      clearInterval(waitForAdminForm);
     }
-
-    // Table Update Functions
-    function updateAllViews() {
-        updateComplaintsTable();
-        updateDocumentsTable();
-        updateServicesTable();
-        updateManageComplaintsTable();
-        updateManageDocumentsTable();
-        updateManageServicesTable();
-        updateResolvedComplaintsGrid();
-        
-        const currentUser = getCurrentUser();
-        if (currentUser?.role === 'admin') {
-            updateAdminComplaintsTable();
-            updateAdminVerifiedComplaintsTable();
-        }
-    }
-
-    function updateComplaintsTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        const statusFilterValue = statusFilter ? statusFilter.value : 'all';
-        let filteredComplaints = complaints.filter(c => 
-            c.createdById === currentUser.id && 
-            c.createdBy === currentUser.username
-        );
-
-        if (statusFilterValue !== 'all') {
-            filteredComplaints = filteredComplaints.filter(c => c.status === statusFilterValue);
-        }
-
-        renderTable(
-            complaintsList,
-            filteredComplaints,
-            ['id', 'type', 'date', 'status', 'location'],
-            ['ID', 'Type', 'Date', 'Status', 'Location'],
-            true
-        );
-    }
-
-    function updateDocumentsTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        const statusFilterValue = documentStatusFilter ? documentStatusFilter.value : 'all';
-        let filteredDocuments = documents.filter(d => 
-            d.createdById === currentUser.id && 
-            d.createdBy === currentUser.username
-        );
-
-        if (statusFilterValue !== 'all') {
-            filteredDocuments = filteredDocuments.filter(d => d.status === statusFilterValue);
-        }
-
-        renderTable(
-            documentsList,
-            filteredDocuments,
-            ['id', 'documentType', 'dateRequested', 'status', 'purpose'],
-            ['ID', 'Document Type', 'Date Requested', 'Status', 'Purpose'],
-            true
-        );
-    }
-
-    function updateServicesTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        const typeFilterValue = serviceTypeFilter ? serviceTypeFilter.value : 'all';
-        let filteredServices = otherServices.filter(s => 
-            s.createdById === currentUser.id && 
-            s.createdBy === currentUser.username
-        );
-
-        if (typeFilterValue !== 'all') {
-            filteredServices = filteredServices.filter(s => s.serviceType === typeFilterValue);
-        }
-
-        renderTable(
-            servicesList,
-            filteredServices,
-            ['id', 'serviceType', 'dateSubmitted', 'status', 'details'],
-            ['ID', 'Service Type', 'Date', 'Status', 'Details'],
-            true
-        );
-    }
-
-    function updateManageComplaintsTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'staff')) return;
-
-        const statusFilterValue = manageStatusFilter ? manageStatusFilter.value : 'all';
-        const searchValue = searchComplaints ? searchComplaints.value.toLowerCase() : '';
-        
-        // Start with all complaints
-        let filteredComplaints = [...complaints];
-        
-        // Role-specific filtering
-        if (currentUser.role === 'staff') {
-            // Staff should see all complaints that need verification or are pending
-            filteredComplaints = filteredComplaints.filter(c => 
-                c.needsVerification || 
-                !c.isVerified || 
-                c.status === 'Pending'
-            );
-        } else if (currentUser.role === 'admin') {
-            // Admin sees all verified complaints
-            filteredComplaints = filteredComplaints.filter(c => c.isVerified);
-        }
-        
-        // Apply status filter
-        if (statusFilterValue !== 'all') {
-            filteredComplaints = filteredComplaints.filter(c => c.status === statusFilterValue);
-        }
-        
-        // Apply search filter
-        if (searchValue) {
-            filteredComplaints = filteredComplaints.filter(c => 
-                (c.type && c.type.toLowerCase().includes(searchValue)) ||
-                (c.residentName && c.residentName.toLowerCase().includes(searchValue)) ||
-                (c.location && c.location.toLowerCase().includes(searchValue))
-            );
-        }
-
-        // Render the table
-        renderTable(
-            manageComplaintsList,
-            filteredComplaints,
-            ['id', 'type', 'residentName', 'date', 'status', 'location'],
-            ['ID', 'Type', 'Resident', 'Date', 'Status', 'Location'],
-            currentUser.role === 'admin'
-        );
-    }
-
-    function updateManageDocumentsTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'staff')) return;
-
-        const statusFilterValue = documentManageStatusFilter ? documentManageStatusFilter.value : 'all';
-        const searchValue = searchDocuments ? searchDocuments.value.toLowerCase() : '';
-        
-        let filteredDocuments = [...documents];
-        
-        if (currentUser.role === 'staff') {
-            filteredDocuments = filteredDocuments.filter(d => !d.isVerified);
-        } else if (currentUser.role === 'admin') {
-            filteredDocuments = filteredDocuments.filter(d => d.isVerified);
-        }
-        
-        if (statusFilterValue !== 'all') {
-            filteredDocuments = filteredDocuments.filter(d => d.status === statusFilterValue);
-        }
-        
-        if (searchValue) {
-            filteredDocuments = filteredDocuments.filter(d => 
-                d.documentType.toLowerCase().includes(searchValue) ||
-                d.residentName.toLowerCase().includes(searchValue) ||
-                d.purpose.toLowerCase().includes(searchValue)
-            );
-        }
-
-        renderTable(
-            manageDocumentsList,
-            filteredDocuments,
-            ['id', 'documentType', 'residentName', 'dateRequested', 'status', 'purpose'],
-            ['ID', 'Document Type', 'Resident', 'Date Requested', 'Status', 'Purpose'],
-            currentUser.role === 'admin'
-        );
-    }
-
-    function updateManageServicesTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'staff')) return;
-
-        const typeFilterValue = serviceManageTypeFilter ? serviceManageTypeFilter.value : 'all';
-        const searchValue = searchServices ? searchServices.value.toLowerCase() : '';
-        
-        let filteredServices = [...otherServices];
-        
-        if (currentUser.role === 'staff') {
-            filteredServices = filteredServices.filter(s => !s.isVerified);
-        } else if (currentUser.role === 'admin') {
-            filteredServices = filteredServices.filter(s => s.isVerified);
-        }
-        
-        if (typeFilterValue !== 'all') {
-            filteredServices = filteredServices.filter(s => s.serviceType === typeFilterValue);
-        }
-        
-        if (searchValue) {
-            filteredServices = filteredServices.filter(s => 
-                s.serviceType.toLowerCase().includes(searchValue) ||
-                s.residentName.toLowerCase().includes(searchValue) ||
-                s.details.toLowerCase().includes(searchValue)
-            );
-        }
-
-        renderTable(
-            manageServicesList,
-            filteredServices,
-            ['id', 'serviceType', 'residentName', 'dateSubmitted', 'status', 'details'],
-            ['ID', 'Service Type', 'Resident', 'Date', 'Status', 'Details'],
-            currentUser.role === 'admin'
-        );
-    }
-
-    function updateAdminComplaintsTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser || currentUser.role !== 'admin') return;
-
-        const statusFilterValue = adminStatusFilter ? adminStatusFilter.value : 'all';
-        const searchValue = adminSearchComplaints ? adminSearchComplaints.value.toLowerCase() : '';
-        
-        let filteredComplaints = [...complaints];
-        
-        if (statusFilterValue !== 'all') {
-            filteredComplaints = filteredComplaints.filter(c => c.status === statusFilterValue);
-        }
-        
-        if (searchValue) {
-            filteredComplaints = filteredComplaints.filter(c => 
-                c.type.toLowerCase().includes(searchValue) ||
-                c.residentName.toLowerCase().includes(searchValue) ||
-                c.location.toLowerCase().includes(searchValue)
-            );
-        }
-
-        renderAdminTable(
-            adminComplaintsList,
-            filteredComplaints,
-            ['id', 'type', 'residentName', 'date', 'status', 'location', 'verifiedBy'],
-            ['ID', 'Type', 'Resident', 'Date', 'Status', 'Location', 'Verified By'],
-            true
-        );
-    }
-
-    function updateAdminVerifiedComplaintsTable() {
-        const currentUser = getCurrentUser();
-        if (!currentUser || currentUser.role !== 'admin') return;
-
-        const statusFilterValue = adminVerifiedStatusFilter ? adminVerifiedStatusFilter.value : 'all';
-        const searchValue = adminVerifiedSearch ? adminVerifiedSearch.value.toLowerCase() : '';
-        
-        let filteredComplaints = complaints.filter(c => c.isVerified);
-        
-        if (statusFilterValue !== 'all') {
-            filteredComplaints = filteredComplaints.filter(c => c.status === statusFilterValue);
-        }
-        
-        if (searchValue) {
-            filteredComplaints = filteredComplaints.filter(c => 
-                c.type.toLowerCase().includes(searchValue) ||
-                c.residentName.toLowerCase().includes(searchValue) ||
-                c.location.toLowerCase().includes(searchValue)
-            );
-        }
-
-        renderTable(
-            adminVerifiedComplaintsList,
-            filteredComplaints,
-            ['id', 'type', 'residentName', 'date', 'status', 'location', 'verifiedBy'],
-            ['ID', 'Type', 'Resident', 'Date', 'Status', 'Location', 'Verified By'],
-            true
-        );
-    }
-
-    function renderTable(container, data, properties, headers, showActions) {
-        if (!container) return;
-
-        container.innerHTML = '';
-
-        if (data.length === 0) {
-            container.innerHTML = `<tr><td colspan="${headers.length + 1}" style="text-align: center;">No records found</td></tr>`;
-            return;
-        }
-
-        data.forEach(item => {
-            const row = document.createElement('tr');
-            
-            properties.forEach(prop => {
-                const cell = document.createElement('td');
-                if (prop === 'status') {
-                    cell.innerHTML = `<span class="status-badge status-${item[prop].toLowerCase().replace(' ', '-')}">${item[prop]}</span>`;
-                } else if (prop === 'details') {
-                    cell.textContent = item[prop].substring(0, 50) + (item[prop].length > 50 ? '...' : '');
-                } else {
-                    cell.textContent = item[prop] || '-';
-                }
-                row.appendChild(cell);
-            });
-
-            const actionCell = document.createElement('td');
-            actionCell.innerHTML = `
-                <button class="action-btn view-btn" data-id="${item.id}" data-type="${container.id.includes('Complaints') ? 'complaint' : container.id.includes('Documents') ? 'document' : 'service'}">View</button>
-                ${showActions ? `<button class="action-btn delete-btn" data-id="${item.id}" data-type="${container.id.includes('Complaints') ? 'complaint' : container.id.includes('Documents') ? 'document' : 'service'}">Delete</button>` : ''}
-            `;
-            row.appendChild(actionCell);
-
-            container.appendChild(row);
-        });
-
-        container.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const itemId = parseInt(btn.dataset.id);
-                const itemType = btn.dataset.type;
-                showDetails(itemId, itemType);
-            });
-        });
-
-        container.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const itemId = parseInt(btn.dataset.id);
-                const itemType = btn.dataset.type;
-                deleteItem(itemId, itemType);
-            });
-        });
-    }
-
-    function renderAdminTable(container, data, properties, headers, showActions) {
-        if (!container) return;
-
-        container.innerHTML = '';
-
-        if (data.length === 0) {
-            container.innerHTML = `<tr><td colspan="${headers.length + 1}" style="text-align: center;">No verified complaints found</td></tr>`;
-            return;
-        }
-
-        data.forEach(item => {
-            const row = document.createElement('tr');
-            
-            properties.forEach(prop => {
-                const cell = document.createElement('td');
-                if (prop === 'status') {
-                    cell.innerHTML = `<span class="status-badge status-${item[prop].toLowerCase().replace(' ', '-')}">${item[prop]}</span>`;
-                } else if (prop === 'details') {
-                    cell.textContent = item[prop].substring(0, 50) + (item[prop].length > 50 ? '...' : '');
-                } else {
-                    cell.textContent = item[prop] || '-';
-                }
-                row.appendChild(cell);
-            });
-
-            const actionCell = document.createElement('td');
-            actionCell.innerHTML = `
-                <button class="action-btn view-btn" data-id="${item.id}" data-type="complaint">View</button>
-                ${showActions ? `<button class="action-btn delete-btn" data-id="${item.id}" data-type="complaint">Delete</button>` : ''}
-            `;
-            row.appendChild(actionCell);
-
-            container.appendChild(row);
-        });
-
-        container.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const itemId = parseInt(btn.dataset.id);
-                showDetails(itemId, 'complaint');
-            });
-        });
-
-        container.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const itemId = parseInt(btn.dataset.id);
-                deleteItem(itemId, 'complaint');
-            });
-        });
-    }
-
-    function updateResolvedComplaintsGrid() {
-        const typeFilterValue = publicTypeFilter ? publicTypeFilter.value : 'all';
-        let filteredComplaints = complaints.filter(c => c.status === 'Resolved');
-        
-        if (typeFilterValue !== 'all') {
-            filteredComplaints = filteredComplaints.filter(c => c.type === typeFilterValue);
-        }
-
-        renderComplaintCards(filteredComplaints);
-    }
-
-    function renderComplaintCards(complaints) {
-        if (!resolvedComplaintsGrid) return;
-
-        resolvedComplaintsGrid.innerHTML = '';
-
-        if (complaints.length === 0) {
-            resolvedComplaintsGrid.innerHTML = `
-                <div class="no-complaints">
-                    <p>No resolved complaints to display</p>
-                </div>
-            `;
-            return;
-        }
-
-        complaints.forEach(complaint => {
-            const card = document.createElement('div');
-            card.className = 'complaint-card';
-            card.innerHTML = `
-                <h3>${complaint.type}</h3>
-                <div class="complaint-meta">
-                    <span>${complaint.date}</span>
-                    <span>${complaint.location}</span>
-                </div>
-                <div class="complaint-description">
-                    <p>${complaint.details.substring(0, 100)}${complaint.details.length > 100 ? '...' : ''}</p>
-                </div>
-                ${complaint.photo ? `<img src="${complaint.photo}" alt="Complaint photo" class="complaint-image">` : ''}
-                <button class="action-btn view-btn" data-id="${complaint.id}" data-type="complaint">View Details</button>
-            `;
-            resolvedComplaintsGrid.appendChild(card);
-        });
-
-        resolvedComplaintsGrid.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const itemId = parseInt(btn.dataset.id);
-                showDetails(itemId, 'complaint');
-            });
-        });
-    }
-
-    // Modal and Detail Functions
-    function showDetails(itemId, itemType) {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return;
-
-        let item;
-        switch(itemType) {
-            case 'complaint':
-                item = complaints.find(c => c.id === itemId);
-                break;
-            case 'document':
-                item = documents.find(d => d.id === itemId);
-                break;
-            case 'service':
-                item = otherServices.find(s => s.id === itemId);
-                break;
-            default:
-                alert('Invalid item type');
-                return;
-        }
-        
-        if (!item) {
-            alert('Item not found');
-            return;
-        }
-
-        if (modalTitle) modalTitle.textContent = `${itemType === 'complaint' ? item.type : 
-                                itemType === 'document' ? item.documentType : 
-                                item.serviceType} (ID: ${item.id})`;
-        
-        let modalContent = `
-            <div class="item-detail">
-                <h3>${itemType === 'complaint' ? 'Complaint Details' : 
-                     itemType === 'document' ? 'Document Request Details' : 
-                     'Service Details'}</h3>
-                
-                <div class="item-meta">
-                    <div><strong>Submitted by:</strong> ${item.residentName}</div>
-                    <div><strong>Date:</strong> ${item.date || item.dateRequested || item.dateSubmitted}</div>
-        `;
-
-        if (itemType === 'complaint') {
-            modalContent += `
-                    <div><strong>Location:</strong> ${item.location}</div>
-                    <div><strong>Details:</strong> ${item.details}</div>
-            `;
-        } else if (itemType === 'document') {
-            modalContent += `
-                    <div><strong>Document Type:</strong> ${item.documentType}</div>
-                    <div><strong>Purpose:</strong> ${item.purpose}</div>
-                    ${item.notes ? `<div><strong>Notes:</strong> ${item.notes}</div>` : ''}
-            `;
-        } else if (itemType === 'service') {
-            modalContent += `
-                    <div><strong>Service Type:</strong> ${item.serviceType}</div>
-                    <div><strong>Details:</strong> ${item.details}</div>
-                    ${item.serviceType === 'Donation' ? `<div><strong>Donation Amount:</strong> PHP ${item.donationAmount}</div>` : ''}
-            `;
-        }
-
-        modalContent += `
-                    <div><strong>Status:</strong> <span class="status-badge status-${item.status.toLowerCase().replace(' ', '-')}">${item.status}</span></div>
-        `;
-
-        if (itemType === 'complaint') {
-            modalContent += item.assignedStaff ? `<div><strong>Assigned Staff:</strong> ${item.assignedStaff}</div>` : '';
-            modalContent += item.verifiedBy ? `<div><strong>Verified By:</strong> ${item.verifiedBy}</div>` : '';
-            modalContent += item.resolutionNotes ? `
-                <div class="admin-feedback">
-                    <h3>Resolution Notes</h3>
-                    <p>${item.resolutionNotes}</p>
-                </div>
-            ` : '';
-        } else if (itemType === 'document') {
-            modalContent += item.processedBy ? `<div><strong>Processed By:</strong> ${item.processedBy}</div>` : '';
-            modalContent += item.dateProcessed ? `<div><strong>Date Processed:</strong> ${item.dateProcessed}</div>` : '';
-            modalContent += item.verifiedBy ? `<div><strong>Verified By:</strong> ${item.verifiedBy}</div>` : '';
-        } else if (itemType === 'service') {
-            modalContent += item.verifiedBy ? `<div><strong>Verified By:</strong> ${item.verifiedBy}</div>` : '';
-        }
-
-        if (itemType === 'complaint' && item.photo) {
-            modalContent += `
-                <div class="complaint-photo">
-                    <h3>Attached Photo</h3>
-                    <img src="${item.photo}" alt="Complaint photo" style="max-width: 100%;">
-                </div>
-            `;
-        }
-
-        modalContent += `
-                </div>
-            </div>
-        `;
-
-        if (modalBody) modalBody.innerHTML = modalContent;
-        updateModalActions(item, itemType, currentUser);
-        if (modal) modal.style.display = 'block';
-    }
-
-    function updateModalActions(item, itemType, currentUser) {
-        if (!modalActions) return;
-        
-        modalActions.innerHTML = '';
-        
-        if (!currentUser) return;
-
-        modalActions.innerHTML += `
-            <button class="action-btn print-btn" id="printDetailsBtn" data-id="${item.id}" data-type="${itemType}">Print Details</button>
-        `;
-
-        if (currentUser.role === 'staff' || currentUser.role === 'admin') {
-            if (itemType === 'complaint') {
-                if (item.status === 'Pending') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="assignToMeBtn" data-id="${item.id}">Assign to Me</button>
-                        <button class="action-btn edit-btn" id="startProgressBtn" data-id="${item.id}">Start Progress</button>
-                    `;
-                } else if (item.status === 'In Progress') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="resolveBtn" data-id="${item.id}">Mark as Resolved</button>
-                    `;
-                }
-                
-                // Add verify button if not already verified
-                if (!item.isVerified && item.status !== 'Pending') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="verifyBtn" data-id="${item.id}" data-type="${itemType}">Verify</button>
-                    `;
-                }
-            } else if (itemType === 'document') {
-                if (item.status === 'Pending') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="processDocumentBtn" data-id="${item.id}">Mark as Processing</button>
-                    `;
-                } else if (item.status === 'Processing') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="readyDocumentBtn" data-id="${item.id}">Mark as Ready</button>
-                    `;
-                } else if (item.status === 'Ready for Pickup') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="completeDocumentBtn" data-id="${item.id}">Mark as Completed</button>
-                    `;
-                }
-                
-                if (!item.isVerified && item.status !== 'Pending') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="verifyBtn" data-id="${item.id}" data-type="${itemType}">Verify</button>
-                    `;
-                }
-            } else if (itemType === 'service') {
-                if (item.status === 'Received') {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="processServiceBtn" data-id="${item.id}">Mark as Processed</button>
-                    `;
-                }
-                
-                if (!item.isVerified) {
-                    modalActions.innerHTML += `
-                        <button class="action-btn edit-btn" id="verifyBtn" data-id="${item.id}" data-type="${itemType}">Verify</button>
-                    `;
-                }
-            }
-        }
-
-        if (currentUser.role === 'admin') {
-            modalActions.innerHTML += `
-                <button class="action-btn delete-btn" id="deleteBtn" data-id="${item.id}" data-type="${itemType}">Delete</button>
-            `;
-        }
-
-        document.getElementById('printDetailsBtn')?.addEventListener('click', () => printItemDetails(item, itemType));
-        document.getElementById('assignToMeBtn')?.addEventListener('click', () => assignComplaintToMe(item.id));
-        document.getElementById('startProgressBtn')?.addEventListener('click', () => updateComplaintStatus(item.id, 'In Progress'));
-        document.getElementById('resolveBtn')?.addEventListener('click', () => {
-            const resolutionNotes = prompt('Enter resolution notes:');
-            if (resolutionNotes !== null) {
-                updateComplaintStatus(item.id, 'Resolved', resolutionNotes);
-            }
-        });
-        document.getElementById('processDocumentBtn')?.addEventListener('click', () => updateDocumentStatus(item.id, 'Processing'));
-        document.getElementById('readyDocumentBtn')?.addEventListener('click', () => updateDocumentStatus(item.id, 'Ready for Pickup'));
-        document.getElementById('completeDocumentBtn')?.addEventListener('click', () => updateDocumentStatus(item.id, 'Completed'));
-        document.getElementById('processServiceBtn')?.addEventListener('click', () => updateServiceStatus(item.id, 'Processed'));
-        document.getElementById('verifyBtn')?.addEventListener('click', () => verifyItem(item.id, itemType));
-        document.getElementById('deleteBtn')?.addEventListener('click', () => deleteItem(item.id, itemType));
-    }
-
-    function assignComplaintToMe(complaintId) {
-        const currentUser = getCurrentUser();
-        const complaint = complaints.find(c => c.id === complaintId);
-        
-        if (complaint && currentUser) {
-            complaint.assignedStaff = currentUser.name;
-            complaint.status = 'In Progress';
-            
-            localStorage.setItem('complaints', JSON.stringify(complaints));
-            
-            updateAllViews();
-            closeModal();
-            alert('Complaint has been assigned to you and marked as In Progress');
-        }
-    }
-
-    function verifyItem(itemId, itemType) {
-        const currentUser = getCurrentUser();
-        if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'staff')) {
-            alert('Only staff or admin can verify items');
-            return;
-        }
-
-        let item;
-        let collection;
-        
-        switch(itemType) {
-            case 'complaint':
-                collection = complaints;
-                item = complaints.find(c => c.id === itemId);
-                if (item) {
-                    item.verifiedBy = currentUser.name;
-                    item.verifiedAt = new Date().toISOString().split('T')[0];
-                    item.isVerified = true;
-                    item.needsVerification = false;
-                    localStorage.setItem('complaints', JSON.stringify(complaints));
-                }
-                break;
-            case 'document':
-                collection = documents;
-                item = documents.find(d => d.id === itemId);
-                if (item) {
-                    item.verifiedBy = currentUser.name;
-                    item.verifiedAt = new Date().toISOString().split('T')[0];
-                    item.isVerified = true;
-                    localStorage.setItem('documents', JSON.stringify(documents));
-                }
-                break;
-            case 'service':
-                collection = otherServices;
-                item = otherServices.find(s => s.id === itemId);
-                if (item) {
-                    item.verifiedBy = currentUser.name;
-                    item.verifiedAt = new Date().toISOString().split('T')[0];
-                    item.isVerified = true;
-                    localStorage.setItem('otherServices', JSON.stringify(otherServices));
-                }
-                break;
-            default:
-                alert('Invalid item type');
-                return;
-        }
-
-        if (item) {
-            updateAllViews();
-            closeModal();
-            alert('Item has been verified');
-        }
-    }
-
-    function updateComplaintStatus(complaintId, status, resolutionNotes = '') {
-        const complaint = complaints.find(c => c.id === complaintId);
-        
-        if (complaint) {
-            complaint.status = status;
-            if (resolutionNotes) {
-                complaint.resolutionNotes = resolutionNotes;
-            }
-            localStorage.setItem('complaints', JSON.stringify(complaints));
-            
-            updateAllViews();
-            closeModal();
-            alert(`Complaint status updated to ${status}`);
-        }
-    }
-
-    function updateDocumentStatus(documentId, status) {
-        const document = documents.find(d => d.id === documentId);
-        const currentUser = getCurrentUser();
-        
-        if (document && currentUser) {
-            document.status = status;
-            document.processedBy = currentUser.name;
-            document.dateProcessed = new Date().toISOString().split('T')[0];
-            localStorage.setItem('documents', JSON.stringify(documents));
-            
-            updateAllViews();
-            closeModal();
-            alert(`Document status updated to ${status}`);
-        }
-    }
-
-    function updateServiceStatus(serviceId, status) {
-        const service = otherServices.find(s => s.id === serviceId);
-        const currentUser = getCurrentUser();
-        
-        if (service && currentUser) {
-            service.status = status;
-            localStorage.setItem('otherServices', JSON.stringify(otherServices));
-            
-            updateAllViews();
-            closeModal();
-            alert(`Service status updated to ${status}`);
-        }
-    }
-
-    function closeModal() {
-        if (modal) modal.style.display = 'none';
-    }
-
-    function deleteItem(itemId, itemType) {
-        const currentUser = getCurrentUser();
-        if (!currentUser || currentUser.role !== 'admin') {
-            alert('Only admin can delete items');
-            return;
-        }
-        
-        if (confirm('Are you sure you want to delete this item?')) {
-            let itemDeleted = false;
-            
-            switch(itemType) {
-                case 'complaint':
-                    complaints = complaints.filter(c => c.id !== itemId);
-                    localStorage.setItem('complaints', JSON.stringify(complaints));
-                    itemDeleted = true;
-                    break;
-                case 'document':
-                    documents = documents.filter(d => d.id !== itemId);
-                    localStorage.setItem('documents', JSON.stringify(documents));
-                    itemDeleted = true;
-                    break;
-                case 'service':
-                    otherServices = otherServices.filter(s => s.id !== itemId);
-                    localStorage.setItem('otherServices', JSON.stringify(otherServices));
-                    itemDeleted = true;
-                    break;
-                default:
-                    alert('Invalid item type');
-                    return;
-            }
-            
-            if (itemDeleted) {
-                updateAllViews();
-                closeModal();
-                alert('Item deleted successfully');
-            }
-        }
-    }
-
-    function printItemDetails(item, itemType) {
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>${itemType === 'complaint' ? 'Complaint' : 
-                         itemType === 'document' ? 'Document Request' : 
-                         'Service'} Details #${item.id}</title>
-                <style>
-                    body { font-family: Arial, sans-serif; margin: 20px; }
-                    h1 { color: #166088; }
-                    .item-info { margin-bottom: 20px; }
-                    .status-badge { 
-                        display: inline-block;
-                        padding: 3px 8px;
-                        border-radius: 3px;
-                        font-size: 0.9em;
-                        font-weight: bold;
-                    }
-                    .status-pending { background-color: #ffc107; color: black; }
-                    .status-in-progress, .status-processing { background-color: #17a2b8; color: white; }
-                    .status-resolved, .status-completed, .status-processed { background-color: #28a745; color: white; }
-                    .status-ready-for-pickup { background-color: #6f42c1; color: white; }
-                    .photo-container { margin-top: 20px; }
-                    .photo-container img { max-width: 100%; }
-                </style>
-            </head>
-            <body>
-                <h1>${itemType === 'complaint' ? 'Complaint' : 
-                    itemType === 'document' ? 'Document Request' : 
-                    'Service'} Details #${item.id}</h1>
-                <div class="item-info">
-                    <p><strong>Type:</strong> ${item.type || item.documentType || item.serviceType}</p>
-                    <p><strong>Submitted by:</strong> ${item.residentName}</p>
-                    <p><strong>Date:</strong> ${item.date || item.dateRequested || item.dateSubmitted}</p>
-                    <p><strong>Status:</strong> <span class="status-badge status-${item.status.toLowerCase().replace(' ', '-')}">${item.status}</span></p>
-        `);
-
-        if (itemType === 'complaint') {
-            printWindow.document.write(`
-                    <p><strong>Location:</strong> ${item.location}</p>
-                    <p><strong>Details:</strong> ${item.details}</p>
-                    ${item.assignedStaff ? `<p><strong>Assigned Staff:</strong> ${item.assignedStaff}</p>` : ''}
-                    ${item.verifiedBy ? `<p><strong>Verified By:</strong> ${item.verifiedBy}</p>` : ''}
-                    ${item.resolutionNotes ? `<div class="resolution-notes">
-                        <h3>Resolution Notes</h3>
-                        <p>${item.resolutionNotes}</p>
-                    </div>` : ''}
-            `);
-        } else if (itemType === 'document') {
-            printWindow.document.write(`
-                    <p><strong>Purpose:</strong> ${item.purpose}</p>
-                    ${item.notes ? `<p><strong>Notes:</strong> ${item.notes}</p>` : ''}
-                    ${item.processedBy ? `<p><strong>Processed By:</strong> ${item.processedBy}</p>` : ''}
-                    ${item.dateProcessed ? `<p><strong>Date Processed:</strong> ${item.dateProcessed}</p>` : ''}
-                    ${item.verifiedBy ? `<p><strong>Verified By:</strong> ${item.verifiedBy}</p>` : ''}
-            `);
-        } else if (itemType === 'service') {
-            printWindow.document.write(`
-                    <p><strong>Details:</strong> ${item.details}</p>
-                    ${item.serviceType === 'Donation' ? `<p><strong>Donation Amount:</strong> PHP ${item.donationAmount}</p>` : ''}
-                    ${item.verifiedBy ? `<p><strong>Verified By:</strong> ${item.verifiedBy}</p>` : ''}
-            `);
-        }
-
-        if (itemType === 'complaint' && item.photo) {
-            printWindow.document.write(`
-                <div class="photo-container">
-                    <h3>Attached Photo</h3>
-                    <img src="${item.photo}" alt="Complaint photo">
-                </div>
-            `);
-        }
-
-        printWindow.document.write(`
-                </div>
-                <script>
-                    setTimeout(function() {
-                        window.print();
-                        window.close();
-                    }, 500);
-                </script>
-            </body>
-            </html>
-        `);
-        printWindow.document.close();
-    }
-
-    function generateReport() {
-        const currentUser = getCurrentUser();
-        if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'staff')) {
-            alert('Only staff/admin can generate reports');
-            return;
-        }
-        
-        const currentDate = new Date().toLocaleDateString();
-        const statusFilterValue = currentUser.role === 'admin' ? 
-            (adminStatusFilter ? adminStatusFilter.value : 'all') : 
-            (manageStatusFilter ? manageStatusFilter.value : 'all');
-        const searchValue = currentUser.role === 'admin' ? 
-            (adminSearchComplaints ? adminSearchComplaints.value.toLowerCase() : '') : 
-            (searchComplaints ? searchComplaints.value.toLowerCase() : '');
-        
-        let filteredComplaints = [...complaints];
-        
-        if (statusFilterValue !== 'all') {
-            filteredComplaints = filteredComplaints.filter(c => c.status === statusFilterValue);
-        }
-        
-        if (searchValue) {
-            filteredComplaints = filteredComplaints.filter(c => 
-                c.type.toLowerCase().includes(searchValue) ||
-                c.residentName.toLowerCase().includes(searchValue) ||
-                c.location.toLowerCase().includes(searchValue)
-            );
-        }
-        
-        const reportWindow = window.open('', '_blank');
-        reportWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Barangay Complaints Report</title>
-                <style>
-                    body { font-family: Arial, sans-serif; margin: 20px; }
-                    h1 { color: #166088; text-align: center; }
-                    .report-info { margin-bottom: 20px; text-align: center; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                    th { background-color: #166088; color: white; }
-                    .status-badge { padding: 3px 8px; border-radius: 3px; font-size: 0.8em; }
-                    .status-pending { background-color: #ffc107; color: black; }
-                    .status-in-progress { background-color: #17a2b8; color: white; }
-                    .status-resolved { background-color: #28a745; color: white; }
-                    .footer { margin-top: 30px; text-align: right; font-style: italic; }
-                    @page { size: landscape; }
-                </style>
-            </head>
-            <body>
-                <h1>Barangay Complaints Report</h1>
-                <div class="report-info">
-                    <p>Generated on: ${currentDate}</p>
-                    <p>Total Complaints: ${filteredComplaints.length}</p>
-                    ${statusFilterValue !== 'all' ? `<p>Filtered by status: ${statusFilterValue}</p>` : ''}
-                    ${searchValue ? `<p>Search term: "${searchValue}"</p>` : ''}
-                </div>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Type</th>
-                            <th>Resident</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Location</th>
-                            <th>Assigned Staff</th>
-                            ${currentUser.role === 'admin' ? '<th>Verified By</th>' : ''}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${filteredComplaints.map(c => `
-                            <tr>
-                                <td>${c.id}</td>
-                                <td>${c.type}</td>
-                                <td>${c.residentName}</td>
-                                <td>${c.date}</td>
-                                <td><span class="status-badge status-${c.status.toLowerCase().replace(' ', '-')}">${c.status}</span></td>
-                                <td>${c.location}</td>
-                                <td>${c.assignedStaff || 'Not assigned'}</td>
-                                ${currentUser.role === 'admin' ? `<td>${c.verifiedBy || 'Not verified'}</td>` : ''}
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-                
-                <div class="footer">
-                    <p>Barangay Complaint & Request Management System</p>
-                    <p>Generated by: ${currentUser.name} (${currentUser.role})</p>
-                </div>
-                
-                <script>
-                    setTimeout(function() {
-                        window.print();
-                        window.close();
-                    }, 500);
-                </script>
-            </body>
-            </html>
-        `);
-        reportWindow.document.close();
-    }
-
-    // Event Listeners Setup
-    function setupEventListeners() {
-        // Account type selection
-        if (residentBtn) residentBtn.addEventListener('click', showResidentLogin);
-        if (staffBtn) staffBtn.addEventListener('click', showStaffLogin);
-        if (adminBtn) adminBtn.addEventListener('click', showAdminLogin);
-        if (backToSelection) backToSelection.addEventListener('click', showAccountSelection);
-
-        // Service selection
-        if (complaintsBtn) complaintsBtn.addEventListener('click', showComplaintsSection);
-        if (documentsBtn) documentsBtn.addEventListener('click', showDocumentsSection);
-        if (othersBtn) othersBtn.addEventListener('click', showOthersSection);
-
-        // Toggle password visibility
-        if (togglePasswordLogin && passwordLogin) {
-            togglePasswordLogin.addEventListener('click', () => 
-                togglePasswordVisibility(passwordLogin, togglePasswordLogin));    
-        }
-        if (toggleStaffPassword && staffPassword) {
-            toggleStaffPassword.addEventListener('click', () => 
-                togglePasswordVisibility(staffPassword, toggleStaffPassword));
-        }
-        if (toggleAdminPassword && adminPassword) {
-            toggleAdminPassword.addEventListener('click', () => 
-                togglePasswordVisibility(adminPassword, toggleAdminPassword));
-        }
-        if (togglePasswordSignup && passwordSignup) {
-            togglePasswordSignup.addEventListener('click', () => 
-                togglePasswordVisibility(passwordSignup, togglePasswordSignup));
-        }
-        if (toggleConfirmPassword && confirmPassword) {
-            toggleConfirmPassword.addEventListener('click', () => 
-                togglePasswordVisibility(confirmPassword, toggleConfirmPassword));
-        }
-
-        // Form submissions
-        if (loginForm) loginForm.addEventListener('submit', handleLogin);
-        if (staffLoginForm) staffLoginForm.addEventListener('submit', handleLogin);
-        if (adminLoginForm) adminLoginForm.addEventListener('submit', handleLogin);
-        if (signupForm) signupForm.addEventListener('submit', handleSignup);
-        const showSignup = document.getElementById('showSignup');
-        if (showSignup) {
-            showSignup.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (loginPage) loginPage.style.display = 'none';
-                if (signupPage) signupPage.style.display = 'flex';
-            });
-        }
-
-        if (showLogin) {
-            showLogin.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (signupPage) signupPage.style.display = 'none';
-                if (loginPage) loginPage.style.display = 'flex';
-            });
-        }
-
-        if (complaintForm) complaintForm.addEventListener('submit', handleComplaintSubmit);
-        if (documentRequestForm) documentRequestForm.addEventListener('submit', handleDocumentRequestSubmit);
-        if (otherServicesForm) otherServicesForm.addEventListener('submit', handleOtherServicesSubmit);
-
-        // Other event listeners
-        if (logoutBtn) logoutBtn.addEventListener('click', logout);
-        if (statusFilter) statusFilter.addEventListener('change', updateComplaintsTable);
-        if (documentStatusFilter) documentStatusFilter.addEventListener('change', updateDocumentsTable);
-        if (serviceTypeFilter) serviceTypeFilter.addEventListener('change', updateServicesTable);
-        if (manageStatusFilter) manageStatusFilter.addEventListener('change', updateManageComplaintsTable);
-        if (searchComplaints) searchComplaints.addEventListener('input', updateManageComplaintsTable);
-        if (generateReportBtn) generateReportBtn.addEventListener('click', generateReport);
-        if (adminGenerateReportBtn) adminGenerateReportBtn.addEventListener('click', generateReport);
-        if (publicTypeFilter) publicTypeFilter.addEventListener('change', updateResolvedComplaintsGrid);
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-        if (backToServicesFromComplaints) backToServicesFromComplaints.addEventListener('click', showServiceSelection);
-        if (backToServicesFromDocuments) backToServicesFromDocuments.addEventListener('click', showServiceSelection);
-        if (backToServicesFromOthers) backToServicesFromOthers.addEventListener('click', showServiceSelection);
-        if (manageComplaintsBtn) manageComplaintsBtn.addEventListener('click', showManageComplaintsSection);
-        if (manageDocumentsBtn) manageDocumentsBtn.addEventListener('click', showManageDocumentsSection);
-        if (manageOthersBtn) manageOthersBtn.addEventListener('click', showManageOthersSection);
-        if (backToServicesFromManageComplaints) backToServicesFromManageComplaints.addEventListener('click', showStaffAdminServiceSelection);
-        if (backToServicesFromManageDocuments) backToServicesFromManageDocuments.addEventListener('click', showStaffAdminServiceSelection);
-        if (backToServicesFromManageOthers) backToServicesFromManageOthers.addEventListener('click', showStaffAdminServiceSelection);
-        if (backToServicesFromAdminComplaints) backToServicesFromAdminComplaints.addEventListener('click', showStaffAdminServiceSelection);
-        if (documentManageStatusFilter) documentManageStatusFilter.addEventListener('change', updateManageDocumentsTable);
-        if (searchDocuments) searchDocuments.addEventListener('input', updateManageDocumentsTable);
-        if (serviceManageTypeFilter) serviceManageTypeFilter.addEventListener('change', updateManageServicesTable);
-        if (searchServices) searchServices.addEventListener('input', updateManageServicesTable);
-        if (adminStatusFilter) adminStatusFilter.addEventListener('change', updateAdminComplaintsTable);
-        if (adminSearchComplaints) adminSearchComplaints.addEventListener('input', updateAdminComplaintsTable);
-        if (adminVerifiedStatusFilter) adminVerifiedStatusFilter.addEventListener('change', updateAdminVerifiedComplaintsTable);
-        if (adminVerifiedSearch) adminVerifiedSearch.addEventListener('input', updateAdminVerifiedComplaintsTable);
-
-        // Show/hide donation amount field based on service type
-        if (serviceType) {
-            serviceType.addEventListener('change', function() {
-                if (donationAmountGroup) {
-                    donationAmountGroup.style.display = this.value === 'Donation' ? 'block' : 'none';
-                }
-            });
-        }
-
-        // Caps lock detection
-        [passwordLogin, staffPassword, adminPassword, passwordSignup, confirmPassword].forEach(input => {
-            if (input) {
-                input.addEventListener('keyup', function(e) {
-                    const capsOn = e.getModifierState('CapsLock');
-                    if (input === passwordLogin && capsWarningLogin) {
-                        capsWarningLogin.style.display = capsOn ? 'flex' : 'none';
-                    } else if (input === staffPassword && capsWarningStaff) {
-                        capsWarningStaff.style.display = capsOn ? 'flex' : 'none';
-                    } else if (input === adminPassword && capsWarningAdmin) {
-                        capsWarningAdmin.style.display = capsOn ? 'flex' : 'none';
-                    } else if (capsWarningSignup) {
-                        capsWarningSignup.style.display = capsOn ? 'flex' : 'none';
-                    }
-                });
-            }
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-    }
-
-    // Initialize the application
-    function init() {
-        console.log("Initializing Barangay Complaint System...");
-        try {
-            // Load data from localStorage
-            userAccounts = JSON.parse(localStorage.getItem('userAccounts')) || userAccounts;
-            complaints = JSON.parse(localStorage.getItem('complaints')) || complaints;
-            documents = JSON.parse(localStorage.getItem('documents')) || documents;
-            otherServices = JSON.parse(localStorage.getItem('otherServices')) || otherServices;
-
-            const currentUser = getCurrentUser();
-            if (currentUser) {
-                showDashboard(currentUser);
-                // Refresh complaints every 30 seconds for staff/admin
-                if (currentUser.role === 'staff' || currentUser.role === 'admin') {
-                    setInterval(function() {
-                        updateComplaintsTable();
-                        updateManageComplaintsTable();
-                        if (adminComplaintsList) updateAdminComplaintsTable();
-                        if (adminVerifiedComplaintsList) updateAdminVerifiedComplaintsTable();
-                    }, 30000);
-                }
-            } else {
-                showLoginPage();
-            }
-            setupEventListeners();
-            updateAllViews();
-        } catch (error) {
-            console.error("Initialization failed:", error);
-            showLoginPage();
-        }
-    }
-    // Start the application
-    init();
+  }, 500);
 });
