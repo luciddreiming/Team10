@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     containers.forEach((container) => {
       if (container) container.style.display = "none";
     });
+    if (notifIcon) notifIcon.style.display = "none";
   }
 
   // Toggle between split-screen and full-screen views
@@ -212,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
     switch (user.userType) {
       case "resident":
         if (residentContainer) residentContainer.style.display = "block";
+        if (notifIcon )notifIcon.style.display = "inline-block";
         showResidentNotifications(user.email);
         break;
       case "staff":
