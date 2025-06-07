@@ -408,11 +408,11 @@ textarea {
 
 .tracking-table th,
 .submission-table th {
-  background-color: #1f2833;
-  color: #66fcf1;
+  background-color: ##b740fa;
+  color: ##ffffff;
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 2px solid #00c6ff;
+  border-bottom: 2px solid #ffd524;
 }
 
 .tracking-table td,
