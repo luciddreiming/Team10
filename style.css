@@ -705,9 +705,9 @@ textarea {
   opacity: 1;
 }
 
-/* Update button styling */
-.update-btn {
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+/* Update & View button styling */
+.update-btn, .view-btn {
+  background: linear-gradient(90deg, #e101ff, #b740fa);
   color: white;
   padding: 8px 16px;
   border: none;
@@ -717,9 +717,9 @@ textarea {
   transition: all 0.3s ease;
 }
 
-.update-btn:hover {
+.update-btn:hover, .view-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px #00c6ff;
+  box-shadow: 0 0 10px #b740fa;
 }
 
 /* Status select dropdown */
