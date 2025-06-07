@@ -1,16 +1,16 @@
 /* Import font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 /* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 body {
-  background: #B740FA;
+  background: #b740fa;
   color: #e0e0e0;
   line-height: 1.6;
   min-height: 100vh;
@@ -19,12 +19,12 @@ body {
 
 /* Status Bar (only shown after login) */
 .status-bar {
-  background-color: #B740FA;
+  background-color: #b740fa;
   padding: 15px 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1000;
-  display: none; /* Initially hidden */
+  display: none;
 }
 
 .status-content {
@@ -50,7 +50,7 @@ body {
 }
 
 .notification-btn {
-  background: #B740FA;
+  background: #b740fa;
   border: none;
   color: white;
   padding: 10px 15px;
@@ -63,7 +63,7 @@ body {
 }
 
 .notification-count {
-  background: #ffffff;
+  background: white;
   color: white;
   border-radius: 50%;
   padding: 2px 6px;
@@ -71,7 +71,7 @@ body {
 }
 
 .logout-btn {
- background: #B740FA;
+  background: #b740fa;
   border: none;
   color: white;
   padding: 10px 15px;
@@ -91,7 +91,8 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.logout-icon, .notif-icon {
+.logout-icon,
+.notif-icon {
   font-size: 1.2rem;
   display: inline-block;
   height: 30px;
@@ -99,9 +100,61 @@ body {
 }
 
 /* Split container for login/signup/role selection pages */
+.left-section {
+  flex: 1;
+  background: url("images/Longos.jpg") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  color: #f0f0f0;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.left-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.left-section > * {
+  position: relative;
+  z-index: 2;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.website-title {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.description {
+  font-size: 1em;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
 #split-screen-container {
   width: 100%;
-  height: 100vh;
+  height: 100px;
   display: block;
 }
 
@@ -111,8 +164,8 @@ body {
 }
 
 .form-side {
-  width: 50%;
-  padding: 20px;
+  flex: 1;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,7 +191,7 @@ body {
   width: 100%;
   min-height: 100vh;
   padding: 20px;
-  background-color: #B740FA;
+  background-color: #b740fa;
   display: none;
 }
 
@@ -163,7 +216,7 @@ body {
 .header h1 {
   color: #ffffff;
   margin-bottom: 10px;
-  font-size: 2.0rem;
+  font-size: 2rem;
 }
 
 .header h2 {
@@ -210,8 +263,8 @@ body {
 }
 
 #notif-icon {
-  background-color: #B740FA;
-  color: #B740FA;
+  background-color: #b740fa;
+  color: #b740fa;
   border: none;
   padding: 10px 10px;
   font-size: 1.1rem;
@@ -267,7 +320,7 @@ body {
 /* Buttons */
 .btn {
   display: inline-block;
-  background-color: #FFD524;
+  background-color: #ffd524;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -286,12 +339,12 @@ body {
 }
 
 .admin-btn {
-  background-color: #FFD524;
+  background-color: #ffd524;
   margin: 5px;
 }
 
 .admin-btn:hover {
-  background-color: #FFD524;
+  background-color: #ffd524;
 }
 
 /* Form Styling */
@@ -307,7 +360,9 @@ body {
   color: #ffffff;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #000;
@@ -318,7 +373,9 @@ input, select, textarea {
   transition: all 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
   border-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
@@ -345,8 +402,10 @@ textarea {
 }
 
 /* Cards */
-.role-card, .service-card, .stat-card {
-  background-color: #FFD524;
+.role-card,
+.service-card,
+.stat-card {
+  background-color: #ffd524;
   border-radius: 12px;
   padding: 25px;
   color: #000000;
@@ -356,18 +415,21 @@ textarea {
   margin-bottom: 20px;
 }
 
-.role-card:hover, .service-card:hover {
+.role-card:hover,
+.service-card:hover {
   transform: translateY(-8px);
-  background-color: #FFD524;
+  background-color: #ffd524;
 }
 
-.role-card h3, .service-card h3 {
-  background-color: #FFD524;
+.role-card h3,
+.service-card h3 {
+  background-color: #ffd524;
   margin-bottom: 10px;
   font-size: 1.5rem;
 }
 
-.role-card p, .service-card p {
+.role-card p,
+.service-card p {
   color: #000000;
 }
 
@@ -383,7 +445,9 @@ textarea {
 }
 
 /* Grid Layouts */
-.role-options, .service-options, .stats {
+.role-options,
+.service-options,
+.stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
@@ -398,7 +462,8 @@ textarea {
   padding: 10px;
 }
 
-.tracking-table, .submission-table {
+.tracking-table,
+.submission-table {
   width: 100%;
   border-collapse: collapse;
   margin: 0;
@@ -458,10 +523,18 @@ textarea {
 }
 
 /* Status Colors */
-.status-pending { color: #f39c12; }
-.status-processing { color: #3498db; }
-.status-completed { color: #2ecc71; }
-.status-rejected { color: #e74c3c; }
+.status-pending {
+  color: #f39c12;
+}
+.status-processing {
+  color: #3498db;
+}
+.status-completed {
+  color: #2ecc71;
+}
+.status-rejected {
+  color: #e74c3c;
+}
 
 /* Tab Navigation */
 .tab-btn {
@@ -520,8 +593,12 @@ textarea {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Hover Button Effects */
@@ -561,14 +638,18 @@ textarea {
 }
 
 .service-options .box .imgBx:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(22, 96, 136, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(
+    180deg,
+    rgba(22, 96, 136, 0.7),
+    rgba(0, 0, 0, 0.7)
+  );
   mix-blend-mode: multiply;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -759,28 +840,30 @@ textarea {
   .form-row {
     grid-template-columns: 1fr;
   }
-  
-  .role-options, .service-options, .stats {
+
+  .role-options,
+  .service-options,
+  .stats {
     grid-template-columns: 1fr;
   }
-  
+
   .container {
     padding: 20px;
   }
-  
+
   .header h1 {
     font-size: 2rem;
   }
-  
+
   .header h2 {
     font-size: 1.2rem;
   }
-  
+
   .tab-btn {
     padding: 8px 12px;
     font-size: 14px;
   }
-  
+
   .admin-nav-btn {
     padding: 8px 12px;
     font-size: 14px;
@@ -826,16 +909,16 @@ textarea {
     gap: 10px;
     text-align: center;
   }
-  
+
   .service-options .box {
     width: 280px;
     height: 280px;
   }
-  
+
   .service-options .box .content .title {
     font-size: 20px;
   }
-  
+
   .service-options .box .content p {
     font-size: 13px;
   }
