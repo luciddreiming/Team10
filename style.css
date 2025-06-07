@@ -253,7 +253,7 @@ body {
 }
 
 .nav-btn:hover {
-  background-color: rgba(156, 42, 255, 0.651);
+  background-color: rgba(157, 45, 255, 0.651);
 }
 
 /* Notification Area */
@@ -290,15 +290,15 @@ body {
 }
 
 .notif-panel {
-  background-color: #0b0c10;
-  color: white;
+  background-color: #ffd524;
+  color: #000000;
   position: absolute;
   top: 45px;
   right: 0;
   width: 280px;
-  border: 1px solid #45a29e;
+  border: 1px solid #e101ff;
   border-radius: 10px;
-  box-shadow: 0 0 10px #0072ff55;
+  box-shadow: 0 0 10px #55185d;
   z-index: 1000;
   padding: 10px;
   max-height: 300px;
@@ -482,7 +482,7 @@ textarea {
 
 .tracking-table td,
 .submission-table td {
-  background-color: #55185D;
+  background-color: #55185d;
   color: white;
   padding: 12px 15px;
   border-bottom: 3px solid #ffffff;
@@ -574,11 +574,11 @@ textarea {
   padding: 20px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  border: 1px solid rgba(0, 198, 255, 0.2);
+  border: 1px solid #ffd524;
 }
 
 .admin-status-board h2 {
-  color: #66fcf1;
+  color: #ffffff;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -752,14 +752,14 @@ textarea {
 }
 
 .modal-content {
-  background: linear-gradient(135deg, #1a2a3a, #0f2027);
+  background: linear-gradient( #ffffff, #b740fa);
   margin: 5% auto;
   padding: 25px;
-  border: 1px solid #00c6ff;
+  border: 1px solid #b740fa;
   border-radius: 10px;
   width: 80%;
   max-width: 700px;
-  box-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+  box-shadow: 0 0 20px rgba(157, 45, 255, 0.651);
   position: relative;
   animation: slideDown 0.3s;
 }
@@ -781,16 +781,16 @@ textarea {
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #45a29e;
+  border-bottom: 1px solid #b740fa;
 }
 
 .modal-header h2 {
-  color: #66fcf1;
+  color: #000000;
   font-size: 1.5rem;
 }
 
 .close-btn {
-  color: #aaa;
+  color: #000000;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
@@ -823,7 +823,7 @@ textarea {
 }
 
 .item-details p strong {
-  color: #66fcf1;
+  color: #fff000;
 }
 
 .modal-footer {
@@ -832,7 +832,7 @@ textarea {
   justify-content: flex-end;
   gap: 10px;
   padding-top: 15px;
-  border-top: 1px solid #45a29e;
+  border-top: 1px solid #fff000;
 }
 
 /* Responsive */
@@ -862,12 +862,6 @@ textarea {
   .tab-btn {
     padding: 8px 12px;
     font-size: 14px;
-  }
-
-  .admin-nav-btn {
-    padding: 8px 12px;
-    font-size: 14px;
-    margin-right: 5px;
   }
 
   .nav-controls {
