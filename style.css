@@ -734,7 +734,7 @@ textarea {
 
 .status-select:focus {
   outline: none;
-  border-color: #00c6ff;
+  border-color: #b2b2b2;
 }
 
 /* Modal Styles */
