@@ -726,9 +726,9 @@ textarea {
 .status-select {
   padding: 8px;
   border-radius: 4px;
-  background-color: #1f2833;
-  color: white;
-  border: 1px solid #45a29e;
+  background-color: #ffffff;
+  color: #858484;
+  border: 1px solid #b2b2b2;
   cursor: pointer;
 }
 
