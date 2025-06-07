@@ -3,703 +3,775 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barangay Complaint & Request System</title>
+    <title>Barangay Management System</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="login-container" id="loginPage">
-        <div class="login-image"></div>
-        <div class="login-box">
-            <h1>Welcome to Barangay Portal</h1> 
-            <p class="welcome-message" id="welcomeMessage">Please select your account type</p>
-            
-            <div class="account-type-selector" id="accountTypeSelector">
-                <button class="account-type-btn" id="residentBtn">
-                    <div class="btn-icon">👤</div>
-                    <div class="btn-text">Resident</div>
-                </button>
+    <!-- Split Screen Container -->
+    <div id="split-screen-container">
+        <div class="split-container">
+            <div class="image-side">
+                <img src="images/Longos.jpg" alt="Barangay Image">
+            </div>
+            <div class="form-side">
+                <!-- Role Selection Container -->
+                <div class="container" id="role-selection-container" style="display: none">
+                  <div class="header">
+                    <h1>Magandang Araw, Barangay Longos!</h1>
+                    <h2>Click or Tap User Type</h2>
+                  </div>
+
+                  <div class="role-options">
+                    <div class="role-card" data-role="resident">
+                      <h3>Resident</h3>
+                      <p>Access services and submit requests</p>
+                    </div>
+
+                    <div class="role-card" data-role="staff">
+                      <h3>Barangay Staff</h3>
+                      <p>Manage resident requests and services</p>
+                    </div>
+
+                    <div class="role-card" data-role="admin">
+                      <h3>Admin</h3>
+                      <p>System administration and management</p>
+                    </div>
+                  </div>
+                </div>
                 
-                <button class="account-type-btn" id="staffBtn">
-                    <div class="btn-icon">👔</div>
-                    <div class="btn-text">Barangay Staff</div>
-                </button>
-                
-                <button class="account-type-btn" id="adminBtn">
-                    <div class="btn-icon">🛡️</div>
-                    <div class="btn-text">Admin</div>
-                </button>
-            </div>
-            
-            <div class="login-form" id="residentLoginForm" style="display: none;">
-                <h2>Resident Login</h2>
-                <form id="loginForm">
-                    <input type="text" id="username" placeholder="Username" required>
-                    <div class="password-container">
-                        <input type="password" id="password" placeholder="Password" required>
-                        <span class="toggle-password" id="togglePasswordLogin">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                                <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <!-- Login Container -->
+                <div class="container" id="login-container">
+                  <div class="header">
+                    <h1>Hello po! Halina't Mag-log in!</h1>
+                    <h2>Log In</h2>
+                  </div>
+
+                  <div class="nav-controls">
+                    <button type="button" class="back-btn">Back</button>
+                  </div>
+
+                  <div class="form-container">
+                    <form id="login-form">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-container">
+                          <input type="password" id="password" required />
+                          <span class="toggle-password" id="togglePassword">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                              <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
-                        </span>
+                          </span>
+                        </div>
+                        <p class="caps-warning" id="capsWarningLogin" style="display: none;">⚠️ Caps Lock is on</p>
+                      </div>
+
+                      <button type="submit" class="btn">Log In</button>
+                    </form>
+
+                    <div class="switch-form">
+                      <p>
+                        Don't have an account?
+                        <a href="#" id="show-signup">Create an Account</a>
+                      </p>
                     </div>
-                    <p class="caps-warning" id="capsWarningLogin" style="display: none;">⚠️ Caps Lock is on</p>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-            
-            <div class="login-form" id="staffLoginForm" style="display: none;">
-                <h2>Staff Login</h2>
-                <form id="staffLoginForm">
-                    <input type="text" id="staffUsername" placeholder="Username" required>
-                    <div class="password-container">
-                        <input type="password" id="staffPassword" placeholder="Password" required>
-                        <span class="toggle-password" id="toggleStaffPassword">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                                <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </div>
+                </div>
+
+                <!-- Signup Container -->
+                <div class="container" id="signup-container" style="display: none">
+                  <div class="header">
+                    <h1>Barangay Management System</h1>
+                    <h2>Create an Account</h2>
+                  </div>
+
+                  <div class="nav-controls">
+                    <button type="button" class="back-btn">Back</button>
+                    <button type="button" class="logout-btn">Logout</button>
+                  </div>
+
+                  <div class="form-container">
+                    <form id="signup-form">
+                      <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" required />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" required />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="user-type">Type of User</label>
+                        <select id="user-type" required>
+                          <option value="" selected disabled>Select User Type</option>
+                          <option value="resident">Resident</option>
+                          <option value="staff">Barangay Staff</option>
+                          <option value="admin">Admin</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="password-container">
+                          <input type="password" id="signup-password" required />
+                          <span class="toggle-password" id="toggleSignupPassword">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                              <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
-                        </span>
-                    </div>
-                    <p class="caps-warning" id="capsWarningStaff" style="display: none;">⚠️ Caps Lock is on</p>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-            
-            <div class="login-form" id="adminLoginForm" style="display: none;">
-                <h2>Admin Login</h2>
-                <form id="adminLoginForm">
-                    <input type="text" id="adminUsername" placeholder="Username" required>
-                    <div class="password-container">
-                        <input type="password" id="adminPassword" placeholder="Password" required>
-                        <span class="toggle-password" id="toggleAdminPassword">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                                <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          </span>
+                        </div>
+                        <p class="caps-warning" id="capsWarningSignup" style="display: none;">⚠️ Caps Lock is on</p>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <div class="password-container">
+                          <input type="password" id="confirm-password" required />
+                          <span class="toggle-password" id="toggleConfirmPassword">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                              <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
-                        </span>
+                          </span>
+                        </div>
+                      </div>
+
+                      <button type="submit" class="btn">Sign Up</button>
+                    </form>
+
+                    <div class="switch-form">
+                      <p>Already have an account? <a href="#" id="show-login">Sign In</a></p>
                     </div>
-                    <p class="caps-warning" id="capsWarningAdmin" style="display: none;">⚠️ Caps Lock is on</p>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-            
-            <button class="back-btn" id="backToSelection" style="display: none;">← Back to selection</button>
-            <p class="form-footer" id="signupLinkContainer">Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
-            <p class="terms-notice">By using this service, you understood and agree to the<br>
-            Barangay Online Services Terms of Use and Privacy Statement</p>
+                  </div>
+                </div>
+            </div>       
         </div>
     </div>
+    
+    <div id="full-screen-container" style="display: none">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-content">
+                <span class="status-text">Status</span>
+                <h1 class="system-title">Barangay Management System</h1>
+                <div class="status-controls">
+                <button id="notif-icon">🔔 <span id="notif-count">0</span></button>
+                    <button class="logout-btn">Log out</button>
+                </div>
+            </div>
+        <div class="nav-controls">
+            <div class="notification-area">
+              <div id="notif-panel" class="notif-panel" style="display: none;">
+                <h4>Notifications</h4>
+                <ul id="notif-list"></ul>
+              </div>
+            </div>
+        </div>
 
-    <div class="login-container" id="signupPage" style="display: none;">
-        <div class="login-image"></div>
-        <div class="login-box">
-            <h1>Create Account</h1>
-            <form id="signupForm">
-                <input type="text" id="signupName" placeholder="Full Name" required>
-                <input type="email" id="signupEmail" placeholder="Email" required>
-                <input type="text" id="signupUsername" placeholder="Username" required>
-                <div class="password-container">
-                    <input type="password" id="signupPassword" placeholder="Password" required>
-                    <span class="toggle-password" id="togglePasswordSignup">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                        </svg>
-                    </span>
+        <!-- Resident Container -->
+        <div class="container" id="resident-container" style="display: none">
+          <div class="header">
+            <h1>Select A Service</h1>
+          </div>
+
+          <div class="service-options">
+            <div class="box">
+              <button data-service="request" class="service-btn">
+                <div class="imgBx">
+                  <img src="images/1.jpeg" alt="Request Catalog">
                 </div>
-                <p class="caps-warning" id="capsWarningSignup" style="display: none;">⚠️Caps Lock is on</p>
-                <div class="password-container">
-                    <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
-                    <span class="toggle-password" id="toggleConfirmPassword">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
-                        </svg>
-                    </span>
+                <div class="content">
+                  <h2 class="title">Request a Document</h2>
+                  <p>Choose the document you need, answer the form, submit, and pick it up.</p>
                 </div>
-                <div class="form-group">
-                    <label for="userRole">Account Type</label>
-                    <select id="userRole" required>
-                        <option value="" disabled selected>Select your role</option>
-                        <option value="resident">Resident</option>
-                        <option value="staff">Barangay Staff</option>
-                        <option value="admin">Admin</option>
-                    </select>
+              </button>
+            </div>
+            
+            <div class="box">
+              <button data-service="complaint" class="service-btn">
+                <div class="imgBx">
+                  <img src="images/2.jpg" alt="Complaint Form">
                 </div>
-                <button type="submit">Sign Up</button>
-                <p class="form-footer">Already have an account? <a href="#" id="showLogin">Log in</a></p>
+                <div class="content">
+                  <h2 class="title">File a Complaint</h2>
+                  <p>Report complaint for the improvement of our community.</p>
+                </div>
+              </button>
+            </div>
+            
+            <div class="box">
+              <button data-service="other" class="service-btn">
+                <div class="imgBx">
+                  <img src="images/3.jpg" alt="Other Services">
+                </div>
+                <div class="content">
+                  <h2 class="title">Other Services</h2>
+                  <p>Submit suggestions, feedback, or donations</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tracking Container -->
+        <div class="container" id="tracking-container" style="display: none">
+          <div class="header">
+            <h1>My Submissions</h1>
+            <h2>Track your requests and complaints</h2>
+          </div>
+
+          <div class="nav-controls">
+            <button type="button" class="back-btn">Back</button>
+          </div>
+
+          <div class="tracking-tabs">
+            <button type="button" class="tab-btn active" data-tab="requests">
+              My Requests
+            </button>
+            <button type="button" class="tab-btn" data-tab="complaints">
+              My Complaints
+            </button>
+            <button type="button" class="tab-btn" data-tab="others">
+              My Other Services
+            </button>
+          </div>
+
+          <div class="tracking-content">
+            <div class="tab-content active" id="requests-tab">
+              <div class="table-container">
+                <table class="tracking-table">
+                  <thead>
+                    <tr>
+                      <th>Request ID</th>
+                      <th>Type</th>
+                      <th>Date Submitted</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="requests-list"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="tab-content" id="complaints-tab">
+              <div class="table-container">
+                <table class="tracking-table">
+                  <thead>
+                    <tr>
+                      <th>Complaint ID</th>
+                      <th>Type</th>
+                      <th>Date Submitted</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="complaints-list"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="tab-content" id="others-tab">
+              <div class="table-container">
+                <table class="tracking-table">
+                  <thead>
+                    <tr>
+                      <th>Service ID</th>
+                      <th>Type</th>
+                      <th>Date Submitted</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="others-list"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Request Form Container -->
+        <div class="container" id="request-form-container" style="display: none">
+          <div class="header">
+            <h2>Request Form</h2>
+          </div>
+
+          <div class="nav-controls">
+            <button type="button" class="back-btn">Back</button>
+            <button type="button" class="nav-btn" id="tracking-btn">My Submissions</button>
+          </div>
+
+          <form id="request-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="barangay-id">Email</label>
+                <input type="text" id="barangay-id" />
+              </div>
+
+              <div class="form-group">
+                <label for="submit-plan">Request</label>
+                <select type="" id="request">
+                    <option value="" selected disabled>Select Request</option>
+                    <option value="Barangay ID">Barangay ID</option>
+                    <option value="Solo Parent ID">Solo Parent ID</option>
+                    <option value="CoI">Certificate of Indigency</option>
+                    <option value="CoR">Certificate of Residency</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name-req">First Name</label>
+                <input type="text" id="first-name-req" />
+              </div>
+
+              <div class="form-group">
+                <label for="last-name-req">Last Name</label>
+                <input type="text" id="last-name-req" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-number">Contact Number</label>
+                <input type="text" id="contact-number" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" />
+              </div>
+
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender">
+                  <option value="" selected disabled>Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn">Submit Request</button>
+          </form>
+        </div>
+
+        <!-- Complaint Form Container -->
+        <div class="container" id="complaint-form-container" style="display: none">
+          <div class="header">
+            <h2>Complaint Form</h2>
+          </div>
+
+          <div class="nav-controls">
+            <button type="button" class="back-btn">Back</button>
+            <button type="button" class="nav-btn" id="tracking-btn">My Submissions</button>
+          </div>
+
+          <form id="complaint-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name-comp">First Name</label>
+                <input type="text" id="first-name-comp" />
+              </div>
+
+              <div class="form-group">
+                <label for="last-name-comp">Last Name</label>
+                <input type="text" id="last-name-comp" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address-comp">Address</label>
+              <input type="text" id="address-comp" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-number-comp">Contact Number</label>
+                <input type="text" id="contact-number-comp" />
+              </div>
+
+              <div class="form-group">
+                <label for="email-comp">Email</label>
+                <input type="email" id="email-comp" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="complaint-type">Type of Complaint</label>
+              <select id="complaint-type">
+                <option value="">Choose the type of your complaint</option>
+                <option value="noise">Noise Complaint</option>
+                <option value="property">Property Issue</option>
+                <option value="sanitation">Sanitation Concern</option>
+                <option value="safety">Safety Concern</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="complaint-details">Complaint Details</label>
+              <textarea id="complaint-details" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit Complaint</button>
+          </form>
+        </div>
+
+        <!-- Other Services Form Container -->
+        <div class="container" id="other-form-container" style="display: none">
+          <div class="header">
+            <h2>Other Services</h2>
+          </div>
+
+          <div class="nav-controls">
+            <button type="button" class="back-btn" id="backToServicesFromOthers">Back</button>
+            <button type="button" class="nav-btn" id="tracking-btn">My Submissions</button>
+          </div>
+
+          <div class="complaint-form">
+            <form id="otherServicesForm">
+              <div class="form-group">
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" required>
+                  <option value="" disabled selected>Select service type</option>
+                  <option value="Suggestion">Suggestion</option>
+                  <option value="Feedback">Feedback</option>
+                  <option value="Donation">Donation</option>
+                  <option value="Volunteer">Volunteer</option>
+                  <option value="Blotter">Volunteer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="serviceDetails">Details</label>
+                <textarea id="serviceDetails" rows="4" required></textarea>
+              </div>
+              <div class="form-group" id="donationAmountGroup" style="display: none;">
+                <label for="donationAmount">Donation Amount (PHP)</label>
+                <input type="number" id="donationAmount" min="0">
+              </div>
+              <button type="submit" class="submit-btn">Submit</button>
             </form>
-        </div>
-    </div>
-
-    <div class="main-content" id="dashboardPage" style="display: none;">
-        <header>
-            <button class="logout-btn" id="logoutBtn">Logout</button>
-            <h1>Barangay Complaint & Request System</h1>
-            <div id="userRoleDisplay"></div>
-        </header>
-
-        <!-- Service Selection for Residents -->
-        <div class="service-selection" id="serviceSelection" style="display: none;">
-            <button class="service-title-btn"></button>
-            <div class="service-options">
-                <div class="box">
-                    <button id="complaintsBtn" class="service-btn">
-                        <div class="imgBx">
-                            <img src="img/complaints.png">
-                        </div>
-                        <div class="content">
-                            <h2 class="title">Complaints</h2>
-                            <p>Submit and track your complaints and requests.</p>
-                        </div>
-                    </button>
-                </div>
-                <div class="box">
-                    <button id="documentsBtn" class="service-btn">
-                        <div class="imgBx">
-                            <img src="img/documents.png">
-                        </div>
-                        <div class="content">
-                            <h2 class="title">Documents</h2>
-                            <p>Request barangay documents and certificates.</p>
-                        </div>
-                    </button>
-                </div>
-                <div class="box">
-                    <button id="othersBtn" class="service-btn">
-                        <div class="imgBx">
-                            <img src="img/others.png">
-                        </div>
-                        <div class="content">
-                            <h2 class="title">Others</h2>
-                            <p>Submit suggestions, feedback, or donations.</p>
-                        </div>
-                    </button>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <!-- Complaints Section -->
-        <div class="dashboard-container" id="complaintsSection" style="display: none;">
-            <button class="back-to-services-btn" id="backToServicesFromComplaints">← Go back to selection of services</button>
-            <div class="complaint-form" id="complaintFormSection">
-                <h2>Submit a Complaint/Request</h2>
-                <form id="complaintForm">
-                            <div class="form-group">
-                                <label for="residentName">Name</label>
-                                <input type="text" id="residentName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="residentAge">Age</label>
-                                <input type="number" id="residentAge" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="residentAddress">Address</label>
-                                <input type="text" id="residentAddress" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="residentEmail">Email</label>
-                                <input type="email" id="residentEmail" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="residentContact">Contact Number</label>
-                                <input type="text" id="residentContact" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="complaintType">Type of Issue</label>
-                                <select id="complaintType" required>
-                                    <option value="" disabled selected>Select issue type</option>
-                                    <option value="Streetlight Repair">Streetlight Repair</option>
-                                    <option value="Garbage Collection">Garbage Collection</option>
-                                    <option value="Road Repair">Road Repair</option>
-                                    <option value="Flooding">Flooding</option>
-                                    <option value="Noise Complaint">Noise Complaint</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="complaintDetails">Details</label>
-                                <textarea id="complaintDetails" rows="4" required placeholder="Please describe your issue in detail"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="complaintLocation">Location</label>
-                                <input type="text" id="complaintLocation" required placeholder="Where is the issue located?">
-                            </div>
-                            <div class="form-group">
-                                <label for="photoUpload">Upload Photo (Optional)</label>
-                                <input type="file" id="photoUpload" accept="image/*">
-                            </div>
-                            <button type="submit" class="submit-btn">Submit Complaint</button>
-                </form>
-            </div>
+        <!-- Staff Container -->
+        <div class="container" id="staff-container" style="display: none">
+          <div class="header">
+            <h1>Barangay Staff Portal</h1>
+            <p>Please enter your staff password to continue</p>
+          </div>
 
-            <div class="tracking-dashboard">
-                <h2>My Complaints/Requests</h2>
-                <div class="filter-controls">
-                            <div class="filter-group">
-                                <label for="statusFilter">Filter by Status:</label>
-                                <select id="statusFilter">
-                                    <option value="all">All</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="In Progress">In Progress</option>
-                                    <option value="Resolved">Resolved</option>
-                                </select>
-                            </div>
+          <div class="nav-controls">
+            <button type="button" class="logout-btn">Logout</button>
+          </div>
+
+          <div class="form-container">
+            <form id="staff-auth-form">
+              <div class="form-group">
+                <label for="staff-password">Staff Password</label>
+                <div class="password-container">
+                  <input type="password" id="staff-password" required />
+                  <span class="toggle-password" id="toggleStaffPassword">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                      <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
                 </div>
-                <div class="table-container">
-                    <table id="complaintsTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Location</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="complaintsList">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+              </div>
+              <button type="submit" class="btn">Authenticate</button>
+            </form>
+          </div>
         </div>
 
-        <!-- Documents Section -->
-        <div class="dashboard-container" id="documentsSection" style="display: none;">
-            <div class="complaint-form">
-                <button class="back-to-services-btn" id="backToServicesFromDocuments">← Go back to selection of services</button>    
-                <h2>Request Barangay Documents</h2>
-                <form id="documentRequestForm">
-                    <div class="form-group">
-                        <label for="documentType">Document Type</label>
-                        <select id="documentType" required>
-                            <option value="" disabled selected>Select document type</option>
-                            <option value="Barangay Clearance">Barangay Clearance</option>
-                            <option value="Barangay ID">Barangay ID</option>
-                            <option value="Certificate of Residency">Certificate of Residency</option>
-                            <option value="Business Permit">Business Permit</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="documentPurpose">Purpose</label>
-                        <input type="text" id="documentPurpose" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="documentNotes">Additional Notes</label>
-                        <textarea id="documentNotes" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Request</button>
-                </form>
-            </div>
+        <!-- Admin Container -->
+        <div class="container" id="admin-container" style="display: none">
+          <div class="header">
+            <h1>Admin Portal</h1>
+            <p>Please enter your admin password to continue</p>
+          </div>
 
-            <div class="tracking-dashboard">
-                <h2>My Document Requests</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="documentStatusFilter">Filter by Status:</label>
-                        <select id="documentStatusFilter">
-                            <option value="all">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Ready for Pickup">Ready for Pickup</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table id="documentsTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Document Type</th>
-                                <th>Date Requested</th>
-                                <th>Status</th>
-                                <th>Purpose</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="documentsList">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+          <div class="nav-controls">
+            <button type="button" class="logout-btn">Logout</button>
+          </div>
 
-        <!-- Others Section -->
-        <div class="dashboard-container" id="othersSection" style="display: none;">
-            <div class="complaint-form">
-                <button class="back-to-services-btn" id="backToServicesFromOthers">← Go back to selection of services</button>
-                <h2>Other Services</h2>
-                <form id="otherServicesForm">
-                    <div class="form-group">
-                        <label for="serviceType">Service Type</label>
-                        <select id="serviceType" required>
-                            <option value="" disabled selected>Select service type</option>
-                            <option value="Suggestion">Suggestion</option>
-                            <option value="Feedback">Feedback</option>
-                            <option value="Donation">Donation</option>
-                            <option value="Volunteer">Volunteer</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="serviceDetails">Details</label>
-                        <textarea id="serviceDetails" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group" id="donationAmountGroup" style="display: none;">
-                        <label for="donationAmount">Donation Amount (PHP)</label>
-                        <input type="number" id="donationAmount" min="0">
-                    </div>
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
+          <div class="form-container">
+            <form id="admin-auth-form">
+              <div class="form-group">
+                <label for="admin-password">Admin Password</label>
+                <div class="password-container">
+                  <input type="password" id="admin-password" required />
+                  <span class="toggle-password" id="toggleAdminPassword">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 6c-3.95 0-7.2 2.3-9 6 1.8 3.7 5.05 6 9 6s7.2-2.3 9-6c-1.8-3.7-5.05-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5A2.5 2.5 0 0 0 9.5 12 2.5 2.5 0 0 0 12 14.5 2.5 2.5 0 0 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                      <path d="M22 2L2 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
 
-            <div class="tracking-dashboard">
-                <h2>My Submissions</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="serviceTypeFilter">Filter by Type:</label>
-                        <select id="serviceTypeFilter">
-                            <option value="all">All</option>
-                            <option value="Suggestion">Suggestion</option>
-                            <option value="Feedback">Feedback</option>
-                            <option value="Donation">Donation</option>
-                            <option value="Volunteer">Volunteer</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table id="servicesTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Details</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="servicesList">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+              <button type="submit" class="btn">Authenticate</button>
+            </form>
+          </div>
         </div>
 
         <!-- Staff Dashboard -->
-        <div class="dashboard-container" id="staffDashboard" style="display: none;">
-            <h2 id="managementTitle">All Complaints/Requests</h2>
-            <div class="filter-controls">
-                <div class="filter-group">
-                    <label for="manageStatusFilter">Status:</label>
-                    <select id="manageStatusFilter">
-                        <option value="all">All</option>
-                        <option value="Pending">Pending</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Resolved">Resolved</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="searchComplaints">Search:</label>
-                    <input type="text" id="searchComplaints" placeholder="Search complaints...">
-                </div>
-                <button id="generateReportBtn" class="filter-btn">Generate Report</button>
+        <div class="container" id="staff-dashboard" style="display: none">
+          <div class="header">
+            <h1>Barangay Staff Dashboard</h1>
+          </div>
+          <div class="dashboard">
+            <div class="stats">
+              <div class="stat-card">
+                <h3>Pending Requests</h3>
+                <p class="stat-value" id="pending-count">0</p>
+              </div>
+
+              <div class="stat-card">
+                <h3>Processing</h3>
+                <p class="stat-value" id="processing-count">0</p>
+              </div>
+
+              <div class="stat-card">
+                <h3>Completed</h3>
+                <p class="stat-value" id="completed-count">0</p>
+              </div>
             </div>
-            <div class="table-container">
-                <table id="manageComplaintsTable">
-                    <thead>
+
+            <div class="staff-actions">
+              <h2>Manage Submissions</h2>
+              <div class="submission-tabs">
+                <button type="button" class="tab-btn active" data-tab="requests">Requests</button>
+                <button type="button" class="tab-btn" data-tab="complaints">Complaints</button>
+                <button type="button" class="tab-btn" data-tab="others">Other Services</button>
+              </div>
+
+              <div class="submission-content">
+                <div class="tab-content active" id="requests-tab-staff">
+                  <div class="table-container">
+                    <table class="submission-table">
+                      <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Type</th>
-                            <th>Resident</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Location</th>
-                            <th>Actions</th>
+                          <th>ID</th>
+                          <th>Resident</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Action</th>
                         </tr>
-                    </thead>
-                    <tbody id="manageComplaintsList">
-                    </tbody>
-                </table>
+                      </thead>
+                      <tbody id="staff-requests-list"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="tab-content" id="complaints-tab-staff">
+                  <div class="table-container">
+                    <table class="submission-table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Resident</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="staff-complaints-list"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="tab-content" id="others-tab-staff">
+                  <div class="table-container">
+                    <table class="submission-table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Resident</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="staff-others-list"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Admin Dashboard -->
-        <div class="dashboard-container" id="adminDashboard" style="display: none;">
-            <h2 id="adminManagementTitle">All Verified Complaints/Requests</h2>
-            <div class="filter-controls">
-                <div class="filter-group">
-                    <label for="adminStatusFilter">Status:</label>
-                    <select id="adminStatusFilter">
-                        <option value="all">All</option>
-                        <option value="Pending">Pending</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Resolved">Resolved</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="adminSearchComplaints">Search:</label>
-                    <input type="text" id="adminSearchComplaints" placeholder="Search complaints...">
-                </div>
-                <button id="adminGenerateReportBtn" class="filter-btn">Generate Report</button>
+        <div class="container" id="admin-dashboard" style="display: none">
+          <div class="header">
+            <h1>Admin Dashboard</h1>
+          </div>
+
+          <div class="nav-controls">
+            <button type="button" class="admin-nav-btn active" data-page="dashboard">Dashboard</button>
+            <button type="button" class="admin-nav-btn" data-page="status-board">Status Board</button>
+          </div>
+
+          <div class="dashboard">
+            <div class="stats">
+              <div class="stat-card">
+                <h3>Total Users</h3>
+                <p class="stat-value" id="total-users">0</p>
+              </div>
+
+              <div class="stat-card">
+                <h3>Active Staff</h3>
+                <p class="stat-value" id="active-staff">0</p>
+              </div>
+
+              <div class="stat-card">
+                <h3>Pending Issues</h3>
+                <p class="stat-value" id="pending-issues">0</p>
+              </div>
             </div>
-            <div class="table-container">
-                <table id="adminComplaintsTable">
-                    <thead>
+
+            <div class="admin-actions">
+              <h2>Send Updates to Residents</h2>
+              <form id="email-form">
+                <div class="form-group">
+                  <label for="resident-email">Resident Email</label>
+                  <select id="resident-email" required>
+                    <option value="">Select Resident</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="concern-type">Concern Type</label>
+                  <select id="concern-type" required>
+                    <option value="" selected disabled>Select Concern Type</option>
+                    <option value="request">Request Update</option>
+                    <option value="complaint">Complaint Update</option>
+                    <option value="other">Other Service Update</option>
+                    <option value="general">General Announcement</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="email-subject">Subject</label>
+                  <input type="text" id="email-subject" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="email-message">Message</label>
+                  <textarea id="email-message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Email</button>
+              </form>
+            </div>
+
+            <div class="admin-status-board" id="admin-status-board" style="display: none;">
+              <h2>Status Board</h2>
+              <div class="submission-tabs">
+                <button type="button" class="tab-btn active" data-tab="requests">Requests</button>
+                <button type="button" class="tab-btn" data-tab="complaints">Complaints</button>
+                <button type="button" class="tab-btn" data-tab="others">Other Services</button>
+              </div>
+
+              <div class="submission-content">
+                <div class="tab-content active" id="requests-tab-admin">
+                  <div class="table-container">
+                    <table class="submission-table">
+                      <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Type</th>
-                            <th>Resident</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Location</th>
-                            <th>Verified By</th>
-                            <th>Actions</th>
+                          <th>ID</th>
+                          <th>Resident</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Updated By</th>
+                          <th>Actions</th>
                         </tr>
-                    </thead>
-                    <tbody id="adminComplaintsList">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Service Selection for Staff/Admin -->
-        <div class="service-selection" id="staffAdminServiceSelection" style="display: none;">
-            <button class="service-title-btn"></button>
-            <div class="service-options">
-                <div class="box">
-                    <button id="manageComplaintsBtn" class="service-btn">
-                        <div class="imgBx">
-                            <img src="img/complaints.png">
-                        </div>
-                        <div class="content">
-                            <h2 class="title" id="complaintsTitle">All Complaints/Requests</h2>
-                            <p>View and resolve complaints submitted by residents.</p>
-                        </div>
-                    </button>
-                </div>
-                <div class="box">
-                    <button id="manageDocumentsBtn" class="service-btn">
-                        <div class="imgBx">
-                            <img src="img/documents.png">
-                        </div>
-                        <div class="content">
-                            <h2 class="title" id="documentsTitle">All Document Requests</h2>
-                            <p>Process document requests from residents.</p>
-                        </div>
-                    </button>
-                </div>
-                <div class="box">
-                    <button id="manageOthersBtn" class="service-btn">
-                        <div class="imgBx">
-                            <img src="img/others.png">
-                        </div>
-                        <div class="content">
-                            <h2 class="title" id="servicesTitle">All Other Services</h2>
-                            <p>Handle other services and donations.</p>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Manage Complaints Section -->
-        <div class="dashboard-container" id="manageComplaintsSection" style="display: none;">
-            <button class="back-to-services-btn" id="backToServicesFromManageComplaints">← Go back to selection of services</button>
-            <div class="staff-dashboard">
-                <h2 id="manageComplaintsHeader">All Complaints/Requests</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="manageStatusFilter">Status:</label>
-                        <select id="manageStatusFilter">
-                            <option value="all">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Resolved">Resolved</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="searchComplaints">Search:</label>
-                        <input type="text" id="searchComplaints" placeholder="Search complaints...">
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table id="manageComplaintsTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Type</th>
-                                <th>Resident</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Location</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="manageComplaintsList">
-                        </tbody>
+                      </thead>
+                      <tbody id="admin-requests-list"></tbody>
                     </table>
+                  </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Manage Documents Section -->
-        <div class="dashboard-container" id="manageDocumentsSection" style="display: none;">
-            <button class="back-to-services-btn" id="backToServicesFromManageDocuments">← Go back to selection of services</button>
-            <div class="staff-dashboard">
-                <h2 id="manageDocumentsHeader">All Document Requests</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="documentManageStatusFilter">Status:</label>
-                        <select id="documentManageStatusFilter">
-                            <option value="all">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Ready for Pickup">Ready for Pickup</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="searchDocuments">Search:</label>
-                        <input type="text" id="searchDocuments" placeholder="Search documents...">
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table id="manageDocumentsTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Document Type</th>
-                                <th>Resident</th>
-                                <th>Date Requested</th>
-                                <th>Status</th>
-                                <th>Purpose</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="manageDocumentsList">
-                        </tbody>
+                <div class="tab-content" id="complaints-tab-admin">
+                  <div class="table-container">
+                    <table class="submission-table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Resident</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Updated By</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="admin-complaints-list"></tbody>
                     </table>
+                  </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Manage Other Services Section -->
-        <div class="dashboard-container" id="manageOthersSection" style="display: none;">
-            <button class="back-to-services-btn" id="backToServicesFromManageOthers">← Go back to selection of services</button>
-            <div class="staff-dashboard">
-                <h2 id="manageServicesHeader">All Other Services</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="serviceManageTypeFilter">Type:</label>
-                        <select id="serviceManageTypeFilter">
-                            <option value="all">All</option>
-                            <option value="Suggestion">Suggestion</option>
-                            <option value="Feedback">Feedback</option>
-                            <option value="Donation">Donation</option>
-                            <option value="Volunteer">Volunteer</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="searchServices">Search:</label>
-                        <input type="text" id="searchServices" placeholder="Search services...">
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table id="manageServicesTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Type</th>
-                                <th>Resident</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Details</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="manageServicesList">
-                        </tbody>
+                <div class="tab-content" id="others-tab-admin">
+                  <div class="table-container">
+                    <table class="submission-table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Resident</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Updated By</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="admin-others-list"></tbody>
                     </table>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-
-        <!-- Admin Verified Complaints Section -->
-        <div class="dashboard-container" id="adminVerifiedComplaintsSection" style="display: none;">
-            <button class="back-to-services-btn" id="backToServicesFromAdminComplaints">← Go back to selection of services</button>
-            <div class="staff-dashboard">
-                <h2>All Verified Complaints/Requests</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="adminVerifiedStatusFilter">Status:</label>
-                        <select id="adminVerifiedStatusFilter">
-                            <option value="all">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Resolved">Resolved</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="adminVerifiedSearch">Search:</label>
-                        <input type="text" id="adminVerifiedSearch" placeholder="Search complaints...">
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table id="adminVerifiedComplaintsTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Type</th>
-                                <th>Resident</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Location</th>
-                                <th>Verified By</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminVerifiedComplaintsList">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Public View -->
-        <div class="dashboard-container" id="publicViewSection" style="display: none;">
-            <div class="public-view">
-                <h2>Recently Resolved Issues</h2>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="publicTypeFilter">Filter by Type:</label>
-                        <select id="publicTypeFilter">
-                            <option value="all">All Types</option>
-                            <option value="Streetlight Repair">Streetlight Repair</option>
-                            <option value="Garbage Collection">Garbage Collection</option>
-                            <option value="Road Repair">Road Repair</option>
-                            <option value="Flooding">Flooding</option>
-                            <option value="Noise Complaint">Noise Complaint</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="resolved-complaints-grid" id="resolvedComplaintsGrid">
-                </div>
-            </div>
+          </div>
         </div>
     </div>
 
-    <div class="modal" id="complaintDetailsModal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModalBtn">&times;</span>
-            <h2 id="modalComplaintTitle">Complaint Details</h2>
-            <div class="modal-body" id="modalComplaintBody">
-            </div>
-            <div class="modal-actions" id="modalActions">
-            </div>
-        </div>
+    <!-- Modal for details view -->
+    <div id="details-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title">Details</h2>
+        <div id="modal-body"></div>
+        <div id="modal-actions"></div>
+      </div>
     </div>
 
     <script src="script.js"></script>
