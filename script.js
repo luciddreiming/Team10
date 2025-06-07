@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const complaintFormContainer = document.getElementById("complaint-form-container");
   const othersFormContainer = document.getElementById("other-form-container");
   const trackingContainer = document.getElementById("tracking-container");
-  const trackingBtn = document.getElementById("tracking-btn");
+  const trackingBtns = document.querySelectorAll("#tracking-btn, .tracking-btn");
   const togglePasswordBtns = document.querySelectorAll(".toggle-password");
   const notifIcon = document.getElementById("notif-icon");
   const notifPanel = document.getElementById("notif-panel");
@@ -293,12 +293,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // My Submissions button handler
-  trackingBtn?.addEventListener("click", function() {
+  // My Submissions button handlers
+trackingBtns.forEach(btn => {
+  if (!btn) return;
+  btn.addEventListener("click", function() {
     hideAllContainers();
     if (trackingContainer) trackingContainer.style.display = "block";
     loadResidentTracking();
+    
+    // Set the first tab as active by default
+    const firstTabBtn = document.querySelector(".tracking-tabs .tab-btn[data-tab='requests']");
+    if (firstTabBtn) firstTabBtn.click();
   });
+});
 
   // Form submission handlers
   document.getElementById("request-form")?.addEventListener("submit", function (e) {
@@ -373,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Back button functionality
-  document.querySelectorAll(".back-btn").forEach((btn) => {
+  document.querySelectorAll("#back-btn").forEach((btn) => {
     if (!btn) return;
     btn.addEventListener("click", function () {
       hideAllContainers();
@@ -636,7 +643,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="modal-body">
           <div class="item-details">
             <p><strong>ID:</strong> ${item.id}</p>
-            <p><strong>Status:</strong> <span class="status-${item.status.toLowerCase()}">${item.status}</span></p>
+            <p><strong>Status:</strong> <span class="tracking-btn-${item.status.toLowerCase()}">${item.status}</span></p>
             <p><strong>Date Submitted:</strong> ${new Date(item.date).toLocaleDateString()}</p>
             ${getItemSpecificDetails(item, itemType)}
           </div>
