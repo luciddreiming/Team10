@@ -1076,13 +1076,13 @@ trackingBtns.forEach(btn => {
     loadAdminStatusBoard();
 
     // Admin navigation button handlers
-    document.querySelectorAll(".admin-nav-btn").forEach((btn) => {
+    document.querySelectorAll(".nav-btn").forEach((btn) => {
       if (!btn) return;
       btn.addEventListener("click", function() {
         const page = this.getAttribute("data-page");
         
         // Update active button
-        document.querySelectorAll(".admin-nav-btn").forEach(b => {
+        document.querySelectorAll(".nav-btn").forEach(b => {
           if (b) b.classList.remove("active");
         });
         this.classList.add("active");
