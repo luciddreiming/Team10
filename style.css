@@ -408,19 +408,19 @@ textarea {
 
 .tracking-table th,
 .submission-table th {
-  background-color: ##55185D;
+  background-color: ##b740fa;
   color: ##ffffff;
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #ffd524;
 }
 
 .tracking-table td,
 .submission-table td {
-  background-color: #0b0c10;
+  background-color: #55185D;
   color: white;
   padding: 12px 15px;
-  border-bottom: 1px solid #1f2833;
+  border-bottom: 1px solid #ffffff;
 }
 
 .tracking-table tr:last-child td,
