@@ -9,6 +9,19 @@
   font-family: "Orbitron", sans-serif;
 }
 
+#staff-dashboard,
+#admin-dashboard,
+#resident-container,
+#tracking-container,
+#request-form-container,
+#complaint-form-container,
+#other-form-container {
+  background-color: #ffffff !important;
+  border-radius: 12px;
+  color: #000;
+}
+
+
 body {
   background: #b740fa;
   color: #e0e0e0;
@@ -19,12 +32,19 @@ body {
 
 /* Status Bar (only shown after login) */
 .status-bar {
-  background-color: #b740fa;
-  padding: 15px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: ##55185d; /* Dark plum or deep purple */
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  display: none;
+  height: 100px;
 }
 
 .status-content {
@@ -36,8 +56,9 @@ body {
   padding: 0 20px;
 }
 
-.system-title {
-  font-size: 24px;
+.website-title {
+	text-align: center;
+  font-size: 30px;
   font-weight: bold;
   color: white;
   margin: 0;
@@ -49,18 +70,29 @@ body {
   gap: 15px;
 }
 
-.notification-btn {
-  background: #b740fa;
+
+.status-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notification-btn,
+.logout-btn {
+  background-color: #ffd524;
   border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
+  color: #2c003e;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 16px;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
 }
+
 
 .notification-count {
   background: white;
@@ -68,23 +100,6 @@ body {
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 12px;
-}
-
-.logout-btn {
-  background: #b740fa;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: 40px;
 }
 
 .logout-btn:hover {
@@ -216,12 +231,18 @@ body {
 .header h1 {
   color: #ffffff;
   margin-bottom: 10px;
+  text-align: center;
   font-size: 2rem;
 }
 
 .header h2 {
   color: #ffffff;
   font-size: 1rem;
+}
+
+.header h3{
+  color: #ffd524;
+  font-size: 2rem;
 }
 
 .nav-controls,
@@ -531,7 +552,7 @@ textarea {
   padding: 10px 20px;
   background: transparent;
   border: none;
-  color: #ffffff;
+  color: #000000;
   cursor: pointer;
   border-bottom: 3px solid transparent;
   transition: all 0.3s ease;
@@ -716,9 +737,9 @@ textarea {
 .status-select {
   padding: 8px;
   border-radius: 4px;
-  background-color: #1f2833;
-  color: white;
-  border: 1px solid #45a29e;
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #555555;
   cursor: pointer;
 }
 
