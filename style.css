@@ -35,8 +35,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #55185d; /* Dark plum or deep purple */
+  background-color: ##55185d; /* Dark plum or deep purple */
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -206,7 +205,7 @@ body {
   width: 100%;
   min-height: 100vh;
   padding: 20px;
-  background-color: #b740fa;
+  background-color: #ffffff;
   display: none;
 }
 
