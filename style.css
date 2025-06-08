@@ -512,16 +512,6 @@ textarea {
   opacity: 0.8;
 }
 
-.view-btn {
-  background-color: #3498db;
-  color: white;
-}
-
-.delete-btn {
-  background-color: #e74c3c;
-  color: white;
-}
-
 /* Status Colors */
 .status-pending {
   color: #f39c12;
@@ -706,7 +696,7 @@ textarea {
 }
 
 /* Update & View button styling */
-.update-btn, .view-btn {
+.update-btn, .view-btn, .delete-btn {
   background: linear-gradient(90deg, #e101ff, #b740fa);
   color: white;
   padding: 8px 16px;
@@ -717,7 +707,7 @@ textarea {
   transition: all 0.3s ease;
 }
 
-.update-btn:hover, .view-btn:hover {
+.update-btn:hover, .view-btn:hover, .delete-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #b740fa;
 }
@@ -726,15 +716,15 @@ textarea {
 .status-select {
   padding: 8px;
   border-radius: 4px;
-  background-color: #ffffff;
-  color: #858484;
-  border: 1px solid #b2b2b2;
+  background-color: #1f2833;
+  color: white;
+  border: 1px solid #45a29e;
   cursor: pointer;
 }
 
 .status-select:focus {
   outline: none;
-  border-color: #b2b2b2;
+  border-color: #00c6ff;
 }
 
 /* Modal Styles */
