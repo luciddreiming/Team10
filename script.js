@@ -495,7 +495,7 @@ trackingBtns.forEach(btn => {
           <td class="status-${service.status.toLowerCase()}">${service.status}</td>
           <td>${service.details.substring(0, 30)}${service.details.length > 30 ? '...' : ''}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${service.id}" data-type="others"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="action-btn view-btn" data-id="${service.id}" data-type="others"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `)
@@ -542,7 +542,7 @@ trackingBtns.forEach(btn => {
           <td>${new Date(req.date).toLocaleDateString()}</td>
           <td class="status-${req.status}">${req.status}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${req.id}" data-type="request"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="action-btn view-btn" data-id="${req.id}" data-type="request"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `
@@ -562,7 +562,7 @@ trackingBtns.forEach(btn => {
           <td>${new Date(comp.date).toLocaleDateString()}</td>
           <td class="status-${comp.status}">${comp.status}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${comp.id}" data-type="complaint"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="action-btn view-btn" data-id="${comp.id}" data-type="complaint"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `
@@ -582,7 +582,7 @@ trackingBtns.forEach(btn => {
           <td>${new Date(service.date).toLocaleDateString()}</td>
           <td class="status-${service.status.toLowerCase()}">${service.status}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${service.id}" data-type="others"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="action-btn view-btn" data-id="${service.id}" data-type="others"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `
@@ -893,7 +893,7 @@ trackingBtns.forEach(btn => {
           </td>
           <td>
             <button class="update-btn" data-type="request" data-id="${req.id}"><img src="images/update.png" alt="Update" style="width: 22px; height: auto;"></button>
-            <button class="view-btn" data-type="request" data-id="${req.id}"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="view-btn" data-type="request" data-id="${req.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
             <button class="delete-btn" data-type="request" data-id="${req.id}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>
           </td>
         </tr>
@@ -924,7 +924,7 @@ trackingBtns.forEach(btn => {
           </td>
           <td>
             <button class="update-btn" data-type="complaint" data-id="${comp.id}"><img src="images/update.png" alt="Update" style="width: 22px; height: auto;"></button>
-            <button class="view-btn" data-type="complaint" data-id="${comp.id}"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="view-btn" data-type="complaint" data-id="${comp.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
             <button class="delete-btn" data-type="complaint" data-id="${comp.id}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>
           </td>
         </tr>
@@ -955,7 +955,7 @@ trackingBtns.forEach(btn => {
           </td>
           <td>
             <button class="update-btn" data-type="others" data-id="${service.id}"><img src="images/update.png" alt="Update" style="width: 22px; height: auto;"></button>
-            <button class="view-btn" data-type="others" data-id="${service.id}"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+            <button class="view-btn" data-type="others" data-id="${service.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
             <button class="delete-btn" data-type="others" data-id="${service.id}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>
           </td>
         </tr>
@@ -1152,7 +1152,7 @@ trackingBtns.forEach(btn => {
               <td class="status-${req.status}">${req.status}</td>
               <td>${req.updatedBy || "N/A"}</td>
               <td>
-                <button class="view-btn" data-type="request" data-id="${req.id}"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+                <button class="view-btn" data-type="request" data-id="${req.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
               </td>
             </tr>
           `;
@@ -1175,7 +1175,7 @@ trackingBtns.forEach(btn => {
               <td class="status-${comp.status}">${comp.status}</td>
               <td>${comp.updatedBy || "N/A"}</td>
               <td>
-                <button class="view-btn" data-type="complaint" data-id="${comp.id}"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+                <button class="view-btn" data-type="complaint" data-id="${comp.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
               </td>
             </tr>
           `;
@@ -1198,7 +1198,7 @@ trackingBtns.forEach(btn => {
               <td class="status-${service.status.toLowerCase()}">${service.status}</td>
               <td>${service.updatedBy || "N/A"}</td>
               <td>
-                <button class="view-btn" data-type="others" data-id="${service.id}"><img src="images/view.png" alt="View" style="width: 22px; height: auto;"></button>
+                <button class="view-btn" data-type="others" data-id="${service.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
               </td>
             </tr>
           `;
