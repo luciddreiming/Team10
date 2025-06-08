@@ -19,8 +19,9 @@
   background-color: #ffffff !important;
   border-radius: 12px;
   color: #000;
+  overflow-y: auto; /* Added to ensure scrollbar appears when content overflows */
+  max-height: calc(100vh - 150px); /* Adjusted to account for status bar */
 }
-
 
 body {
   background: #b740fa;
@@ -28,6 +29,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Status Bar (only shown after login) */
@@ -35,7 +37,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ##55185d; /* Dark plum or deep purple */
+  padding: 15px 30px;
+  background-color: #55185d; /* Dark plum or deep purple */
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -69,7 +72,6 @@ body {
   gap: 15px;
 }
 
-
 .status-controls {
   display: flex;
   align-items: center;
@@ -91,7 +93,6 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: background-color 0.2s ease;
 }
-
 
 .notification-count {
   background: white;
@@ -205,8 +206,9 @@ body {
   width: 100%;
   min-height: 100vh;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #b740fa;
   display: none;
+  padding-top: 120px; /* Added to account for fixed status bar */
 }
 
 .container {
@@ -235,13 +237,13 @@ body {
 }
 
 .header h2 {
-  color: #ffd524;
+  color: #ffffff;
   font-size: 1rem;
 }
 
 .header h3{
   color: #ffd524;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .nav-controls,
@@ -377,7 +379,7 @@ body {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
-  color: #ffffff;
+  color: #000000;
 }
 
 input,
@@ -843,6 +845,25 @@ textarea {
   gap: 10px;
   padding-top: 15px;
   border-top: 1px solid #fff000;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b740fa;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #55185d;
 }
 
 /* Responsive */
