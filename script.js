@@ -495,7 +495,7 @@ trackingBtns.forEach(btn => {
           <td class="status-${service.status.toLowerCase()}">${service.status}</td>
           <td>${service.details.substring(0, 30)}${service.details.length > 30 ? '...' : ''}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${service.id}" data-type="others">View</button>
+            <button class="action-btn view-btn" data-id="${service.id}" data-type="others"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `)
@@ -542,7 +542,7 @@ trackingBtns.forEach(btn => {
           <td>${new Date(req.date).toLocaleDateString()}</td>
           <td class="status-${req.status}">${req.status}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${req.id}" data-type="request">View</button>
+            <button class="action-btn view-btn" data-id="${req.id}" data-type="request"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `
@@ -562,7 +562,7 @@ trackingBtns.forEach(btn => {
           <td>${new Date(comp.date).toLocaleDateString()}</td>
           <td class="status-${comp.status}">${comp.status}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${comp.id}" data-type="complaint">View</button>
+            <button class="action-btn view-btn" data-id="${comp.id}" data-type="complaint"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `
@@ -582,7 +582,7 @@ trackingBtns.forEach(btn => {
           <td>${new Date(service.date).toLocaleDateString()}</td>
           <td class="status-${service.status.toLowerCase()}">${service.status}</td>
           <td>
-            <button class="action-btn view-btn" data-id="${service.id}" data-type="others">View</button>
+            <button class="action-btn view-btn" data-id="${service.id}" data-type="others"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
           </td>
         </tr>
       `
@@ -652,8 +652,8 @@ trackingBtns.forEach(btn => {
         </div>
         <div class="modal-footer">
           <button class="btn print-btn" data-id="${itemId}" data-type="${itemType}">Print</button>
-          ${currentUser?.userType === 'admin' ? 
-            `<button class="btn delete-btn" data-id="${itemId}" data-type="${itemType}">Delete</button>` : ''}
+          ${currentUser?.userType === 'staff' ? 
+            `<button class="btn delete-btn" data-id="${itemId}" data-type="${itemType}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>` : ''}
         </div>
       </div>
     `;
@@ -764,10 +764,10 @@ trackingBtns.forEach(btn => {
             font-size: 0.9em;
             font-weight: bold;
           }
-          .status-pending { background-color: #ffc107; color: black; }
+          .status-pending { background-color: #f39c12; color: black; }
           .status-received { background-color: #17a2b8; color: white; }
-          .status-processing { background-color: #17a2b8; color: white; }
-          .status-completed { background-color: #28a745; color: white; }
+          .status-processing { background-color: #3498db; color: white; }
+          .status-completed { background-color: #2ecc71; color: white; }
         </style>
       </head>
       <body>
@@ -891,8 +891,9 @@ trackingBtns.forEach(btn => {
             </select>
           </td>
           <td>
-            <button class="update-btn" data-type="request" data-id="${req.id}">Update</button>
-            <button class="view-btn" data-type="request" data-id="${req.id}">View</button>
+            <button class="update-btn" data-type="request" data-id="${req.id}"><img src="images/update.png" alt="Update" style="width: 22px; height: auto;"></button>
+            <button class="view-btn" data-type="request" data-id="${req.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
+            <button class="delete-btn" data-type="request" data-id="${req.id}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>
           </td>
         </tr>
       `;
@@ -921,8 +922,9 @@ trackingBtns.forEach(btn => {
             </select>
           </td>
           <td>
-            <button class="update-btn" data-type="complaint" data-id="${comp.id}">Update</button>
-            <button class="view-btn" data-type="complaint" data-id="${comp.id}">View</button>
+            <button class="update-btn" data-type="complaint" data-id="${comp.id}"><img src="images/update.png" alt="Update" style="width: 22px; height: auto;"></button>
+            <button class="view-btn" data-type="complaint" data-id="${comp.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
+            <button class="delete-btn" data-type="complaint" data-id="${comp.id}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>
           </td>
         </tr>
       `;
@@ -951,8 +953,9 @@ trackingBtns.forEach(btn => {
             </select>
           </td>
           <td>
-            <button class="update-btn" data-type="others" data-id="${service.id}">Update</button>
-            <button class="view-btn" data-type="others" data-id="${service.id}">View</button>
+            <button class="update-btn" data-type="others" data-id="${service.id}"><img src="images/update.png" alt="Update" style="width: 22px; height: auto;"></button>
+            <button class="view-btn" data-type="others" data-id="${service.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
+            <button class="delete-btn" data-type="others" data-id="${service.id}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>
           </td>
         </tr>
       `;
@@ -1148,8 +1151,7 @@ trackingBtns.forEach(btn => {
               <td class="status-${req.status}">${req.status}</td>
               <td>${req.updatedBy || "N/A"}</td>
               <td>
-                <button class="view-btn" data-type="request" data-id="${req.id}">View</button>
-                <button class="delete-btn" data-type="request" data-id="${req.id}">Delete</button>
+                <button class="view-btn" data-type="request" data-id="${req.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
               </td>
             </tr>
           `;
@@ -1172,8 +1174,7 @@ trackingBtns.forEach(btn => {
               <td class="status-${comp.status}">${comp.status}</td>
               <td>${comp.updatedBy || "N/A"}</td>
               <td>
-                <button class="view-btn" data-type="complaint" data-id="${comp.id}">View</button>
-                <button class="delete-btn" data-type="complaint" data-id="${comp.id}">Delete</button>
+                <button class="view-btn" data-type="complaint" data-id="${comp.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
               </td>
             </tr>
           `;
@@ -1196,8 +1197,7 @@ trackingBtns.forEach(btn => {
               <td class="status-${service.status.toLowerCase()}">${service.status}</td>
               <td>${service.updatedBy || "N/A"}</td>
               <td>
-                <button class="view-btn" data-type="others" data-id="${service.id}">View</button>
-                <button class="delete-btn" data-type="others" data-id="${service.id}">Delete</button>
+                <button class="view-btn" data-type="others" data-id="${service.id}"><img src="images/view.png" alt="View" style="width: 25px; height: auto;"></button>
               </td>
             </tr>
           `;
@@ -1246,8 +1246,8 @@ trackingBtns.forEach(btn => {
               otherServices = collection;
             }
             
-            // Reload the admin status board
-            loadAdminStatusBoard();
+            // Reload the staff dashboard
+            loadStaffDashboard();
             alert("Item deleted successfully");
           }
         }
