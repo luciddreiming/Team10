@@ -651,7 +651,8 @@ trackingBtns.forEach(btn => {
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn print-btn" data-id="${itemId}" data-type="${itemType}">Print</button>
+          ${currentUser?.userType === 'admin' || 'staff' ? 
+            `<button class="btn print-btn" data-id="${itemId}" data-type="${itemType}">Print</button>` : ''}
           ${currentUser?.userType === 'staff' ? 
             `<button class="btn delete-btn" data-id="${itemId}" data-type="${itemType}"><img src="images/delete.png" alt="Delete" style="width: auto; height: 16px;"></button>` : ''}
         </div>
