@@ -718,7 +718,7 @@ textarea {
 
 /* Update & View button styling */
 .update-btn, .view-btn, .delete-btn {
-  background: #55185d;
+  background: linear-gradient(90deg, #e101ff, #b740fa);
   color: white;
   padding: 6px 12px;
   border: none;
